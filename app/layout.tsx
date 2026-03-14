@@ -1,16 +1,17 @@
-import type { Metadata } from "next";
 import "./globals.css";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Think Tank Ricardo Olivares",
-  description: "Economía, datos, sector externo y análisis aplicado",
+  title: "Centro de Estudios Globales",
+  description:
+    "Plataforma de análisis económico, geopolítica económica, comercio internacional, logística global y datos.",
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="es">
       <body>{children}</body>
