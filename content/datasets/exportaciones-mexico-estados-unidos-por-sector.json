@@ -1,0 +1,20 @@
+{
+  "titulo": "Exportaciones México-Estados Unidos por sector",
+  "slug": "exportaciones-mexico-estados-unidos-por-sector",
+  "categoria": "Comercio internacional",
+  "resumen": "Base estructurada para analizar exportaciones mexicanas hacia EE.UU. por sector y periodo.",
+  "descripcion": "Base estructurada para analizar exportaciones mexicanas hacia Estados Unidos por sector, periodo y dinámica comercial.",
+  "fuentePrimaria": "U.S. Census Bureau. Base de comercio internacional de exportaciones.",
+  "metodologia": "Datos descargados, filtrados, estructurados y homologados por el Instituto Mexicano de Estudios Globales (IMEG).",
+  "frecuencia": "Mensual",
+  "cobertura": "México / Estados Unidos",
+  "actualizacion": "Marzo 2026",
+  "variables": [
+    "Periodo",
+    "Sector",
+    "Valor exportado",
+    "Variación anual",
+    "Participación porcentual"
+  ],
+  "visibilidad": "privado"
+}

@@ -1,4 +1,5 @@
-import { publicaciones } from "@/lib/publicaciones";
+import ReactMarkdown from "react-markdown";
+import { obtenerPublicacionPorSlug } from "@/lib/publicaciones-content";
 
 type Props = {
   params: Promise<{
@@ -8,7 +9,7 @@ type Props = {
 
 export default async function PublicacionIndividual({ params }: Props) {
   const { slug } = await params;
-  const publicacion = publicaciones.find((p) => p.slug === slug);
+  const publicacion = obtenerPublicacionPorSlug(slug);
 
   if (!publicacion) {
     return (
@@ -36,10 +37,8 @@ export default async function PublicacionIndividual({ params }: Props) {
         <span>{publicacion.fecha}</span>
       </div>
 
-      <div className="mt-12 space-y-6 text-lg leading-9 text-slate-300">
-        {publicacion.contenido.map((parrafo, index) => (
-          <p key={index}>{parrafo}</p>
-        ))}
+      <div className="prose prose-invert mt-12 max-w-none prose-headings:text-white prose-p:text-slate-300 prose-strong:text-white prose-img:rounded-2xl prose-img:border prose-img:border-white/10">
+        <ReactMarkdown>{publicacion.contenido}</ReactMarkdown>
       </div>
     </article>
   );

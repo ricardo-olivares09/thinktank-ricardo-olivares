@@ -1,11 +1,13 @@
 import Link from "next/link";
-import { publicaciones } from "@/lib/publicaciones";
-import { datasets } from "@/lib/datasets";
+import { obtenerPublicaciones } from "@/lib/publicaciones-content";
+import { obtenerDatasets } from "@/lib/datasets-content";
 import { colaboradores } from "@/lib/colaboradores";
 import { categorias } from "@/lib/categorias";
 import { proyectos } from "@/lib/proyectos";
 
 export default function HomePage() {
+  const publicaciones = obtenerPublicaciones();
+  const datasets = obtenerDatasets();
   const publicacionesDestacadas = publicaciones.filter((p) => p.destacada).slice(0, 2);
   const datasetsDestacados = datasets.slice(0, 3);
   const colaboradoresDestacados = colaboradores.filter((c) => c.destacado).slice(0, 3);

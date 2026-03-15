@@ -1,4 +1,4 @@
-import { datasets } from "@/lib/datasets";
+import { obtenerDatasetPorSlug } from "@/lib/datasets-content";
 
 type Props = {
   params: Promise<{
@@ -8,7 +8,7 @@ type Props = {
 
 export default async function DatasetPage({ params }: Props) {
   const { slug } = await params;
-  const dataset = datasets.find((d) => d.slug === slug);
+  const dataset = obtenerDatasetPorSlug(slug);
 
   if (!dataset) {
     return (

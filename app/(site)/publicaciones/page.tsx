@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { publicaciones } from "@/lib/publicaciones";
+import { obtenerPublicaciones } from "@/lib/publicaciones-content";
 
 export default function PublicacionesPage() {
+  const publicaciones = obtenerPublicaciones();
+
   return (
     <section className="mx-auto max-w-7xl px-6 py-16">
       <div className="max-w-3xl">
@@ -12,7 +14,7 @@ export default function PublicacionesPage() {
           Publicaciones
         </h1>
         <p className="mt-6 text-lg leading-8 text-slate-300">
-          Análisis, notas y piezas editoriales del Centro de Estudios Globales.
+          Análisis, notas y piezas editoriales del Instituto Mexicano de Estudios Globales.
         </p>
       </div>
 
@@ -30,7 +32,11 @@ export default function PublicacionesPage() {
             <p className="mt-4 text-sm leading-7 text-slate-400">
               {pub.resumen}
             </p>
-            <p className="mt-6 text-sm font-medium text-white">Leer artículo</p>
+            <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-500">
+              <span>{pub.autor}</span>
+              <span>•</span>
+              <span>{pub.fecha}</span>
+            </div>
           </Link>
         ))}
       </div>

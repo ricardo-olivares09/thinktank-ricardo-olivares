@@ -1,0 +1,21 @@
+{
+  "titulo": "Eventos anómalos y choques logísticos",
+  "slug": "eventos-anomalos-y-choques-logisticos",
+  "categoria": "Logística global",
+  "resumen": "Registro de bloqueos, cierres fronterizos, eventos climáticos y disrupciones con impacto económico.",
+  "descripcion": "Registro de bloqueos, cierres fronterizos, eventos climáticos y disrupciones logísticas con impacto económico.",
+  "fuentePrimaria": "Compilación hemerográfica con fuentes públicas nacionales y regionales.",
+  "metodologia": "Base construida, clasificada y depurada por el Instituto Mexicano de Estudios Globales (IMEG).",
+  "frecuencia": "Mensual",
+  "cobertura": "México",
+  "actualizacion": "Marzo 2026",
+  "variables": [
+    "Fecha",
+    "Entidad",
+    "Tipo de evento",
+    "Duración",
+    "Severidad",
+    "Afectación estimada"
+  ],
+  "visibilidad": "privado"
+}

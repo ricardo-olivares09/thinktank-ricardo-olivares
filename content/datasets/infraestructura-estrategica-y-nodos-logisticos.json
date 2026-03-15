@@ -1,0 +1,20 @@
+{
+  "titulo": "Infraestructura estratégica y nodos logísticos",
+  "slug": "infraestructura-estrategica-y-nodos-logisticos",
+  "categoria": "Infraestructura",
+  "resumen": "Inventario base de puertos, aduanas, corredores carreteros y nodos clave del comercio exterior.",
+  "descripcion": "Inventario base de puertos, aduanas, corredores carreteros y nodos estratégicos para el análisis territorial del comercio exterior.",
+  "fuentePrimaria": "Fuentes públicas oficiales, cartografía institucional y registros de infraestructura.",
+  "metodologia": "Información compilada, organizada y sistematizada por el Instituto Mexicano de Estudios Globales (IMEG).",
+  "frecuencia": "Actualización periódica",
+  "cobertura": "México",
+  "actualizacion": "Marzo 2026",
+  "variables": [
+    "Nombre del nodo",
+    "Tipo de infraestructura",
+    "Entidad",
+    "Coordenadas",
+    "Función logística"
+  ],
+  "visibilidad": "privado"
+}

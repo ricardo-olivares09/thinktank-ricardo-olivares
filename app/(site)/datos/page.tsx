@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { datasets } from "@/lib/datasets";
+import { obtenerDatasets } from "@/lib/datasets-content";
 
 export default function DatosPage() {
+  const datasets = obtenerDatasets();
+
   return (
     <section className="mx-auto max-w-7xl px-6 py-16">
       <div className="max-w-3xl">
@@ -12,12 +14,10 @@ export default function DatosPage() {
           Datasets
         </h1>
         <p className="mt-6 text-lg leading-8 text-slate-300">
-          Repositorio de bases, fichas técnicas y recursos estructurados del
-          Instituto Mexicano de Estudios Globales (IMEG).
+          Repositorio de bases, fichas técnicas y recursos estructurados del Instituto Mexicano de Estudios Globales (IMEG).
         </p>
         <p className="mt-4 text-sm leading-7 text-slate-400">
-          El acceso a las bases de datos completas está restringido por ahora a
-          esquemas de colaboración, clientes o membresías futuras.
+          Las fichas técnicas son públicas. El acceso a las bases completas está restringido por ahora a esquemas de colaboración, clientes o membresías futuras.
         </p>
       </div>
 
