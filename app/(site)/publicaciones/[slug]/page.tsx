@@ -37,7 +37,15 @@ export default async function PublicacionIndividual({ params }: Props) {
         <span>{publicacion.fecha}</span>
       </div>
 
-      <div className="prose prose-invert mt-12 max-w-none prose-headings:text-white prose-p:text-slate-300 prose-strong:text-white prose-img:rounded-2xl prose-img:border prose-img:border-white/10">
+      <div className="prose prose-invert mt-12 max-w-none 
+          prose-headings:text-white 
+          prose-p:text-slate-300 
+          prose-p:leading-8 
+          prose-p:indent-8
+          prose-strong:text-white 
+          prose-img:rounded-2xl 
+          prose-img:border 
+          prose-img:border-white/10">
         <ReactMarkdown>{publicacion.contenido}</ReactMarkdown>
       </div>
     </article>
