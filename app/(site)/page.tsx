@@ -18,21 +18,21 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-6 pb-16 pt-20">
         <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
           <div>
-            <p className="text-sm uppercase tracking-[0.24em] text-cyan-300">
+            <p className="text-sm uppercase tracking-[0.24em] text-[#C47A3A]">
               Centro de análisis
             </p>
 
-            <h1 className="mt-5 max-w-5xl text-5xl font-semibold leading-tight tracking-tight text-white md:text-7xl">
-              Centro de Estudios Globales
+            <h1 className="mt-5 max-w-5xl text-5xl font-semibold leading-tight tracking-tight text-[#F3F0EA] md:text-7xl">
+              Instituto Mexicano de Estudios Globales
             </h1>
 
-            <p className="mt-8 max-w-3xl text-lg leading-9 text-slate-300">
+            <p className="mt-8 max-w-3xl text-lg leading-9 text-[#B8C2C8]">
               Plataforma de análisis económico, geopolítica económica, comercio
               internacional, logística global, datos, visualización y economía
               ecológica.
             </p>
 
-            <p className="mt-6 max-w-3xl text-base leading-8 text-slate-400">
+            <p className="mt-6 max-w-3xl text-base leading-8 text-[#B8C2C8]">
               El proyecto busca reunir investigación aplicada, bases de datos,
               fichas técnicas, mapas y publicaciones con enfoque analítico en
               español.
@@ -48,15 +48,15 @@ export default function HomePage() {
 
               <Link
                 href="/datos"
-                className="rounded-full border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition hover:bg-white/10"
+                className="rounded-full border border-[#2A4657] bg-[#102938] px-6 py-3 font-medium text-[#F3F0EA] transition hover:bg-[#16384C]"
               >
                 Explorar datos
               </Link>
             </div>
           </div>
 
-          <div className="rounded-[32px] border border-white/10 bg-white/5 p-8">
-            <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">
+          <div className="rounded-[32px] border border-[#2A4657] bg-[#102938] p-8">
+            <p className="text-sm uppercase tracking-[0.2em] text-[#C47A3A]">
               Líneas de trabajo
             </p>
 
@@ -64,7 +64,7 @@ export default function HomePage() {
               {categorias.map((categoria) => (
                 <div
                   key={categoria}
-                  className="rounded-2xl border border-white/10 bg-black/10 px-4 py-3 text-slate-200"
+                  className="rounded-2xl border border-[#2A4657] bg-black/10 px-4 py-3 text-slate-200"
                 >
                   {categoria}
                 </div>
@@ -77,17 +77,17 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">
+            <p className="text-sm uppercase tracking-[0.2em] text-[#C47A3A]">
               Biblioteca editorial
             </p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-tight text-white">
+            <h2 className="mt-3 text-4xl font-semibold tracking-tight text-[#F3F0EA]">
               Publicaciones destacadas
             </h2>
           </div>
 
           <Link
             href="/publicaciones"
-            className="text-sm font-medium text-white transition hover:text-cyan-300"
+            className="text-sm font-medium text-[#F3F0EA] transition hover:text-[#C47A3A]"
           >
             Ver todas
           </Link>
@@ -98,16 +98,16 @@ export default function HomePage() {
             <Link
               key={pub.slug}
               href={`/publicaciones/${pub.slug}`}
-              className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:border-cyan-300/20 hover:bg-white/10"
+              className="rounded-3xl border border-[#2A4657] bg-[#102938] p-6 transition hover:border-[#D89A57] hover:bg-[#16384C]"
             >
-              <p className="text-sm text-cyan-300">{pub.categoria}</p>
-              <h3 className="mt-2 text-2xl font-medium text-white">
+              <p className="text-sm text-[#C47A3A]">{pub.categoria}</p>
+              <h3 className="mt-2 text-2xl font-medium text-[#F3F0EA]">
                 {pub.titulo}
               </h3>
-              <p className="mt-4 text-sm leading-7 text-slate-400">
+              <p className="mt-4 text-sm leading-7 text-[#B8C2C8]">
                 {pub.resumen}
               </p>
-              <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-500">
+              <div className="mt-6 flex flex-wrap gap-3 text-sm text-[#8FA1AC]">
                 <span>{pub.autor}</span>
                 <span>•</span>
                 <span>{pub.fecha}</span>
@@ -120,13 +120,13 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">
+            <p className="text-sm uppercase tracking-[0.2em] text-[#C47A3A]">
               Biblioteca técnica
             </p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-tight text-white">
+            <h2 className="mt-3 text-4xl font-semibold tracking-tight text-[#F3F0EA]">
               Datasets del IMEG
             </h2>
-            <p className="mt-4 max-w-3xl text-base leading-8 text-slate-400">
+            <p className="mt-4 max-w-3xl text-base leading-8 text-[#B8C2C8]">
               Las fichas técnicas son públicas. El acceso a las bases completas está
               restringido por ahora a esquemas de colaboración, clientes o membresías
               futuras.
@@ -135,7 +135,7 @@ export default function HomePage() {
 
           <Link
             href="/datos"
-            className="text-sm font-medium text-white transition hover:text-cyan-300"
+            className="text-sm font-medium text-[#F3F0EA] transition hover:text-[#C47A3A]"
           >
             Ver todos
           </Link>
@@ -146,16 +146,16 @@ export default function HomePage() {
             <Link
               key={dataset.slug}
               href={`/datos/${dataset.slug}`}
-              className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:border-cyan-300/20 hover:bg-white/10"
+              className="rounded-3xl border border-[#2A4657] bg-[#102938] p-6 transition hover:border-[#D89A57] hover:bg-[#16384C]"
             >
-              <p className="text-sm text-cyan-300">{dataset.categoria}</p>
-              <h3 className="mt-2 text-2xl font-medium text-white">
+              <p className="text-sm text-[#C47A3A]">{dataset.categoria}</p>
+              <h3 className="mt-2 text-2xl font-medium text-[#F3F0EA]">
                 {dataset.titulo}
               </h3>
-              <p className="mt-4 text-sm leading-7 text-slate-400">
+              <p className="mt-4 text-sm leading-7 text-[#B8C2C8]">
                 {dataset.resumen}
               </p>
-              <div className="mt-6 flex items-center justify-between gap-3 text-sm text-slate-500">
+              <div className="mt-6 flex items-center justify-between gap-3 text-sm text-[#8FA1AC]">
                 <span>
                   {dataset.frecuencia} · {dataset.cobertura}
                 </span>
@@ -171,17 +171,17 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-6 py-16">
         <div className="mb-10 flex items-end justify-between gap-6">
           <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">
+            <p className="text-sm uppercase tracking-[0.2em] text-[#C47A3A]">
               Red editorial
             </p>
-            <h2 className="mt-3 text-4xl font-semibold tracking-tight text-white">
+            <h2 className="mt-3 text-4xl font-semibold tracking-tight text-[#F3F0EA]">
               Colaboradores destacados
             </h2>
           </div>
 
           <Link
             href="/colaboradores"
-            className="text-sm font-medium text-white transition hover:text-cyan-300"
+            className="text-sm font-medium text-[#F3F0EA] transition hover:text-[#C47A3A]"
           >
             Ver perfiles
           </Link>
@@ -191,14 +191,14 @@ export default function HomePage() {
           {colaboradoresDestacados.map((colaborador) => (
             <div
               key={colaborador.slug}
-              className="rounded-3xl border border-white/10 bg-white/5 p-6"
+              className="rounded-3xl border border-[#2A4657] bg-[#102938] p-6"
             >
-              <p className="text-sm text-cyan-300">{colaborador.tipo}</p>
-              <h3 className="mt-2 text-2xl font-medium text-white">
+              <p className="text-sm text-[#C47A3A]">{colaborador.tipo}</p>
+              <h3 className="mt-2 text-2xl font-medium text-[#F3F0EA]">
                 {colaborador.nombre}
               </h3>
-              <p className="mt-3 text-sm text-slate-400">{colaborador.rol}</p>
-              <p className="mt-4 text-sm leading-7 text-slate-300">
+              <p className="mt-3 text-sm text-[#B8C2C8]">{colaborador.rol}</p>
+              <p className="mt-4 text-sm leading-7 text-[#B8C2C8]">
                 {colaborador.bio}
               </p>
             </div>
@@ -209,17 +209,17 @@ export default function HomePage() {
       <section className="mx-auto max-w-7xl px-6 py-16">
   <div className="mb-10 flex items-end justify-between gap-6">
     <div>
-      <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">
+      <p className="text-sm uppercase tracking-[0.2em] text-[#C47A3A]">
         Líneas de investigación
       </p>
-      <h2 className="mt-3 text-4xl font-semibold tracking-tight text-white">
+      <h2 className="mt-3 text-4xl font-semibold tracking-tight text-[#F3F0EA]">
         Proyectos
       </h2>
     </div>
 
     <Link
       href="/proyectos"
-      className="text-sm font-medium text-white transition hover:text-cyan-300"
+      className="text-sm font-medium text-[#F3F0EA] transition hover:text-[#C47A3A]"
     >
       Ver todos
     </Link>
@@ -229,13 +229,13 @@ export default function HomePage() {
     {proyectosDestacados.map((proyecto) => (
       <div
         key={proyecto.slug}
-        className="rounded-3xl border border-white/10 bg-white/5 p-6"
+        className="rounded-3xl border border-[#2A4657] bg-[#102938] p-6"
       >
-        <p className="text-sm text-cyan-300">{proyecto.categoria}</p>
-        <h3 className="mt-2 text-2xl font-medium text-white">
+        <p className="text-sm text-[#C47A3A]">{proyecto.categoria}</p>
+        <h3 className="mt-2 text-2xl font-medium text-[#F3F0EA]">
           {proyecto.titulo}
         </h3>
-        <p className="mt-4 text-sm leading-7 text-slate-400">
+        <p className="mt-4 text-sm leading-7 text-[#B8C2C8]">
           {proyecto.resumen}
         </p>
       </div>
@@ -244,16 +244,16 @@ export default function HomePage() {
 </section>
 
       <section className="mx-auto max-w-7xl px-6 py-16">
-        <div className="rounded-[32px] border border-white/10 bg-white/5 p-8 md:p-10">
-          <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">
+        <div className="rounded-[32px] border border-[#2A4657] bg-[#102938] p-8 md:p-10">
+          <p className="text-sm uppercase tracking-[0.2em] text-[#C47A3A]">
             Proyecto en construcción
           </p>
 
-          <h2 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-white">
+          <h2 className="mt-4 max-w-4xl text-4xl font-semibold tracking-tight text-[#F3F0EA]">
             Un espacio para articular análisis, datos y pensamiento crítico en español.
           </h2>
 
-          <p className="mt-6 max-w-4xl text-lg leading-8 text-slate-300">
+          <p className="mt-6 max-w-4xl text-lg leading-8 text-[#B8C2C8]">
             El Centro de Estudios Globales se construye como una plataforma
             abierta para publicar investigación aplicada, desarrollar recursos
             técnicos y vincular economía, territorio, geopolítica y sustentabilidad.
