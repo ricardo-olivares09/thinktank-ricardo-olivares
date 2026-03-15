@@ -122,8 +122,13 @@ export default function HomePage() {
               Biblioteca técnica
             </p>
             <h2 className="mt-3 text-4xl font-semibold tracking-tight text-white">
-              Datasets y recursos
+              Datasets del IMEG
             </h2>
+            <p className="mt-4 max-w-3xl text-base leading-8 text-slate-400">
+              Las fichas técnicas son públicas. El acceso a las bases completas está
+              restringido por ahora a esquemas de colaboración, clientes o membresías
+              futuras.
+            </p>
           </div>
 
           <Link
@@ -148,9 +153,14 @@ export default function HomePage() {
               <p className="mt-4 text-sm leading-7 text-slate-400">
                 {dataset.resumen}
               </p>
-              <p className="mt-6 text-sm text-slate-500">
-                {dataset.frecuencia} · {dataset.cobertura}
-              </p>
+              <div className="mt-6 flex items-center justify-between gap-3 text-sm text-slate-500">
+                <span>
+                  {dataset.frecuencia} · {dataset.cobertura}
+                </span>
+                <span className="rounded-full border border-amber-300/20 bg-amber-400/10 px-3 py-1 text-xs text-amber-200">
+                  Privado
+                </span>
+              </div>
             </Link>
           ))}
         </div>

@@ -6,14 +6,18 @@ export default function DatosPage() {
     <section className="mx-auto max-w-7xl px-6 py-16">
       <div className="max-w-3xl">
         <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">
-          Biblioteca de datos
+          Biblioteca técnica
         </p>
         <h1 className="mt-4 text-5xl font-semibold tracking-tight text-white">
-          Datos
+          Datasets
         </h1>
         <p className="mt-6 text-lg leading-8 text-slate-300">
-          Bases, recursos descargables, fichas técnicas y conjuntos de datos del
-          Centro de Estudios Globales.
+          Repositorio de bases, fichas técnicas y recursos estructurados del
+          Instituto Mexicano de Estudios Globales (IMEG).
+        </p>
+        <p className="mt-4 text-sm leading-7 text-slate-400">
+          El acceso a las bases de datos completas está restringido por ahora a
+          esquemas de colaboración, clientes o membresías futuras.
         </p>
       </div>
 
@@ -24,13 +28,21 @@ export default function DatosPage() {
             href={`/datos/${dataset.slug}`}
             className="rounded-3xl border border-white/10 bg-white/5 p-6 transition hover:border-cyan-300/20 hover:bg-white/10"
           >
-            <p className="text-sm text-cyan-300">{dataset.categoria}</p>
-            <h2 className="mt-2 text-2xl font-medium text-white">
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm text-cyan-300">{dataset.categoria}</p>
+              <span className="rounded-full border border-amber-300/20 bg-amber-400/10 px-3 py-1 text-xs text-amber-200">
+                Privado
+              </span>
+            </div>
+
+            <h2 className="mt-3 text-2xl font-medium text-white">
               {dataset.titulo}
             </h2>
+
             <p className="mt-4 text-sm leading-7 text-slate-400">
               {dataset.resumen}
             </p>
+
             <p className="mt-6 text-sm font-medium text-white">
               Ver ficha técnica
             </p>

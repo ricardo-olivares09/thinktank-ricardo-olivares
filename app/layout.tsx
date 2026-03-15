@@ -2,9 +2,9 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Centro de Estudios Globales",
+  title: "Instituto Mexicano de Estudios Globales",
   description:
-    "Plataforma de análisis económico, geopolítica económica, comercio internacional, logística global y datos.",
+    "Economía, geopolítica y datos",
 };
 
 export default function RootLayout({

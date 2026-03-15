@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const enlaces = [
   { href: "/", label: "Inicio" },
+  { href: "/instituto", label: "Instituto" },
   { href: "/publicaciones", label: "Publicaciones" },
   { href: "/datos", label: "Datos" },
   { href: "/mapas", label: "Mapas" },
@@ -22,15 +23,17 @@ export default function SiteLayout({
       <header className="sticky top-0 z-50 border-b border-white/10 bg-[#07111fcc]/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <Link href="/" className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-2xl bg-gradient-to-br from-cyan-300 via-sky-400 to-emerald-300 font-bold text-slate-950 shadow-[0_0_30px_rgba(34,211,238,0.35)]">
-              CE
-            </div>
+            <img
+              src="/logo-imeg.png"
+              alt="Instituto Mexicano de Estudios Globales"
+              className="h-10 w-auto"
+            />
             <div>
               <p className="text-sm font-semibold text-white">
-                Centro de Estudios Globales
+                Instituto Mexicano de Estudios Globales
               </p>
               <p className="text-xs text-slate-400">
-                Economía, geopolítica y datos
+                IMEG · Economía, geopolítica y datos
               </p>
             </div>
           </Link>
@@ -56,11 +59,12 @@ export default function SiteLayout({
           <div className="grid gap-8 md:grid-cols-2">
             <div>
               <h3 className="text-lg font-semibold text-white">
-                Centro de Estudios Globales
+                Instituto Mexicano de Estudios Globales (IMEG)
               </h3>
               <p className="mt-3 max-w-xl text-sm leading-7 text-slate-400">
-                Plataforma de análisis económico, comercio internacional,
-                logística global, geopolítica económica, datos y visualización.
+                Plataforma de análisis económico, geopolítica económica,
+                comercio internacional, logística global, datos, visualización y
+                economía ecológica.
               </p>
             </div>
 
@@ -69,7 +73,7 @@ export default function SiteLayout({
                 Proyecto dirigido por Ricardo Olivares
               </p>
               <p className="mt-2 text-sm text-slate-500">
-                © 2026 Centro de Estudios Globales
+                © 2026 Instituto Mexicano de Estudios Globales
               </p>
             </div>
           </div>
