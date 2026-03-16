@@ -1,0 +1,134 @@
+MANUAL DEL EDITOR INTERNO
+Instituto Mexicano de Estudios Globales (IMEG)
+
+El editor interno permite generar artículos y datasets sin escribir código.
+
+El objetivo es facilitar la publicación de investigación.
+
+------------------------------------------------
+
+ACCESO AL EDITOR
+
+Abrir en el navegador:
+
+/editor-interno
+
+Ejemplo local:
+
+http://localhost:3000/editor-interno
+
+------------------------------------------------
+
+SECCIÓN 1
+CREAR ARTÍCULO
+
+Campos disponibles:
+
+Título
+Subtítulo
+Autor
+Categoría
+Resumen
+Contenido
+Imágenes
+
+------------------------------------------------
+
+IMÁGENES EN ARTÍCULOS
+
+Las imágenes deben subirse directamente en el editor.
+
+El sistema generará automáticamente la estructura correcta.
+
+Las imágenes se guardarán en:
+
+public/publicaciones/slug-del-articulo/
+
+------------------------------------------------
+
+DESCARGAR ARTÍCULO
+
+Al terminar, presionar:
+
+Descargar paquete
+
+Se generará un archivo ZIP.
+
+El ZIP contiene:
+
+Archivo .md del artículo
+Imágenes utilizadas
+
+------------------------------------------------
+
+SECCIÓN 2
+CREAR DATASET
+
+Campos disponibles:
+
+Nombre del dataset
+Categoría
+Descripción
+Fuente primaria
+Metodología
+Cobertura temporal
+Frecuencia
+Variables principales
+
+También se debe subir el archivo CSV.
+
+------------------------------------------------
+
+DESCARGAR DATASET
+
+El sistema generará un ZIP con:
+
+Metadatos JSON
+Archivo CSV
+Archivo de citación
+
+------------------------------------------------
+
+ESTRUCTURA GENERADA
+
+content/datasets/
+public/datasets/
+
+------------------------------------------------
+
+REGLAS PARA DATASETS
+
+Cada base debe incluir:
+
+Descripción clara
+Fuente primaria
+Metodología de transformación
+Variables principales
+
+------------------------------------------------
+
+CITACIÓN RECOMENDADA
+
+Ejemplo:
+
+Instituto Mexicano de Estudios Globales (IMEG)
+Base de datos de comercio internacional
+Transformación basada en datos de U.S. Census Bureau
+Disponible en: https://imeg.vercel.app
+
+------------------------------------------------
+
+OBJETIVO DEL IMEG
+
+El Instituto Mexicano de Estudios Globales busca generar investigación rigurosa sobre:
+
+Economía internacional
+Geopolítica
+Comercio global
+Economía ecológica
+Transformación productiva
+Análisis de datos internacionales
+
+------------------------------------------------
+
+FIN DEL DOCUMENTO

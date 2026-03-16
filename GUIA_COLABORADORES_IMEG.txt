@@ -1,0 +1,229 @@
+INSTITUTO MEXICANO DE ESTUDIOS GLOBALES (IMEG)
+Guía para Colaboradores de Investigación
+
+Esta guía explica cómo publicar artículos y subir datasets al sitio del IMEG sin modificar el código del sistema.
+
+El objetivo es que cualquier colaborador pueda aportar contenido sin riesgo de romper la página.
+
+------------------------------------------------
+
+REGLA PRINCIPAL
+
+NO modificar estas carpetas:
+
+app/
+lib/
+
+Estas carpetas contienen el funcionamiento del sitio.
+
+------------------------------------------------
+
+CARPETAS QUE SÍ SE USAN
+
+Los colaboradores solo deben trabajar en:
+
+content/
+public/
+
+------------------------------------------------
+
+PUBLICAR UN ARTÍCULO
+
+Paso 1
+
+Abrir el editor interno:
+
+/editor-interno
+
+Ejemplo local:
+
+http://localhost:3000/editor-interno
+
+------------------------------------------------
+
+Paso 2
+
+Llenar los campos del formulario:
+
+Título
+Subtítulo
+Autor
+Categoría
+Resumen
+Contenido
+Imágenes (opcional)
+
+------------------------------------------------
+
+Paso 3
+
+Descargar el paquete del artículo.
+
+El sistema generará un archivo ZIP con:
+
+content/publicaciones/slug-del-articulo.md
+public/publicaciones/slug-del-articulo/imagen1.png
+public/publicaciones/slug-del-articulo/imagen2.png
+
+------------------------------------------------
+
+Paso 4
+
+Descomprimir el archivo.
+
+------------------------------------------------
+
+Paso 5
+
+Copiar archivos al proyecto.
+
+Artículo:
+
+content/publicaciones/
+
+Ejemplo:
+
+content/publicaciones/geopolitica-del-litio.md
+
+Imágenes:
+
+public/publicaciones/slug-del-articulo/
+
+Ejemplo:
+
+public/publicaciones/geopolitica-del-litio/imagen1.png
+
+------------------------------------------------
+
+PUBLICAR UN DATASET
+
+Paso 1
+
+Abrir el editor interno:
+
+/editor-interno
+
+Seleccionar "Generar Dataset".
+
+------------------------------------------------
+
+Paso 2
+
+Completar información:
+
+Nombre del dataset
+Categoría
+Descripción
+Fuente primaria
+Metodología de transformación
+Cobertura temporal
+Frecuencia
+Variables principales
+Archivo CSV
+
+------------------------------------------------
+
+Paso 3
+
+Descargar el paquete ZIP.
+
+Contendrá:
+
+content/datasets/nombre-dataset.json
+content/datasets/nombre-dataset-cita.txt
+public/datasets/nombre-dataset.csv
+
+------------------------------------------------
+
+Paso 4
+
+Copiar archivos al proyecto.
+
+Metadatos:
+
+content/datasets/
+
+Datos:
+
+public/datasets/
+
+------------------------------------------------
+
+CÓMO CITAR UN DATASET DEL IMEG
+
+Ejemplo:
+
+Instituto Mexicano de Estudios Globales (IMEG)
+Base de datos de exportaciones México–Estados Unidos por sector
+Elaborado a partir de datos de U.S. Census Bureau
+Año de actualización: 2026
+Disponible en: https://imeg.vercel.app
+
+------------------------------------------------
+
+SI LA BASE PROVIENE DE OTRA FUENTE
+
+Siempre citar:
+
+1. Fuente primaria
+2. Transformación IMEG
+
+Ejemplo:
+
+Fuente primaria: INEGI
+Transformación y compilación: Instituto Mexicano de Estudios Globales (IMEG)
+
+------------------------------------------------
+
+SUBIR CAMBIOS AL SITIO
+
+Abrir terminal en el proyecto:
+
+cd thinktank
+
+Revisar cambios:
+
+git status
+
+Agregar archivos:
+
+git add .
+
+Crear commit:
+
+git commit -m "Nuevo artículo o dataset"
+
+Subir cambios:
+
+git push origin main
+
+Vercel actualizará automáticamente el sitio.
+
+------------------------------------------------
+
+BUENAS PRÁCTICAS
+
+Usar títulos claros
+Citar fuentes
+Agregar gráficos cuando sea posible
+Evitar párrafos excesivamente largos
+
+------------------------------------------------
+
+LO QUE NO SE DEBE HACER
+
+No modificar:
+
+app/
+lib/
+package.json
+next.config.js
+
+No subir archivos ZIP al repositorio.
+
+Solo subir archivos descomprimidos.
+
+------------------------------------------------
+
+INSTITUTO MEXICANO DE ESTUDIOS GLOBALES
+IMEG

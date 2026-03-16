@@ -1,0 +1,183 @@
+POLÍTICA EDITORIAL
+Instituto Mexicano de Estudios Globales (IMEG)
+
+------------------------------------------------
+
+1. OBJETIVO
+
+El Instituto Mexicano de Estudios Globales (IMEG) es una plataforma dedicada al análisis de economía internacional, geopolítica económica, comercio global, logística internacional y economía ecológica.
+
+Su objetivo es producir, sistematizar y difundir conocimiento económico riguroso en español mediante:
+
+- publicaciones analíticas
+- bases de datos
+- visualizaciones
+- proyectos de investigación aplicada
+
+------------------------------------------------
+
+2. TIPOS DE PUBLICACIONES
+
+El IMEG publica tres tipos principales de contenido:
+
+ARTÍCULOS DE ANÁLISIS
+
+Textos interpretativos sobre temas económicos o geopolíticos.
+
+Incluyen:
+
+- análisis económico
+- interpretación de datos
+- discusión de tendencias globales
+- implicaciones para México o América Latina
+
+------------------------------------------------
+
+NOTAS TÉCNICAS
+
+Textos breves enfocados en:
+
+- metodología
+- explicación de datasets
+- notas sobre construcción de indicadores
+- documentación de bases de datos
+
+------------------------------------------------
+
+BASES DE DATOS (DATASETS)
+
+Compilaciones de datos estructurados elaboradas o transformadas por el IMEG.
+
+Cada dataset incluye:
+
+- descripción del contenido
+- fuente primaria
+- metodología de transformación
+- variables principales
+- cobertura temporal
+
+------------------------------------------------
+
+3. PRINCIPIOS EDITORIALES
+
+El IMEG se rige por los siguientes principios:
+
+Rigor analítico  
+Los análisis deben basarse en evidencia verificable y métodos transparentes.
+
+Transparencia de fuentes  
+Toda información debe citar su fuente original.
+
+Acceso al conocimiento  
+Se promueve la difusión de análisis económico en español.
+
+Independencia intelectual  
+El IMEG no se adscribe a partidos políticos ni intereses corporativos.
+
+Reproducibilidad  
+Cuando sea posible, los datos y metodologías deben permitir replicación.
+
+------------------------------------------------
+
+4. CRITERIOS DE PUBLICACIÓN
+
+Un artículo o dataset debe cumplir al menos con los siguientes criterios:
+
+- relevancia para economía internacional o geopolítica económica
+- claridad argumentativa
+- uso adecuado de datos
+- citación de fuentes
+- redacción clara y precisa
+
+------------------------------------------------
+
+5. USO DE FUENTES
+
+Las publicaciones deben citar claramente:
+
+fuentes primarias  
+ejemplos:
+
+INEGI  
+Banco Mundial  
+IMF  
+U.S. Census Bureau  
+UN Comtrade  
+OECD  
+
+Cuando el IMEG transforma o reorganiza datos, debe indicarse explícitamente.
+
+Ejemplo:
+
+Fuente primaria: INEGI  
+Transformación y compilación: Instituto Mexicano de Estudios Globales (IMEG)
+
+------------------------------------------------
+
+6. CITACIÓN DE DATASETS
+
+Los datasets producidos por el IMEG deben citarse de la siguiente forma:
+
+Instituto Mexicano de Estudios Globales (IMEG).  
+Nombre del dataset.  
+Año de actualización.  
+Fuente primaria: [institución correspondiente].  
+Disponible en: https://imeg.vercel.app
+
+------------------------------------------------
+
+7. RESPONSABILIDAD AUTORAL
+
+Los autores son responsables de:
+
+- la precisión de los datos utilizados
+- la veracidad de las citas
+- la interpretación presentada en el análisis
+
+Las opiniones expresadas en los artículos pertenecen a los autores y no necesariamente reflejan la posición institucional del IMEG.
+
+------------------------------------------------
+
+8. COLABORADORES
+
+El IMEG cuenta con distintos tipos de colaboradores:
+
+Investigadores asociados  
+Académicos invitados  
+Colaboradores de investigación  
+Analistas de datos  
+
+Los colaboradores pueden participar mediante:
+
+- artículos
+- datasets
+- proyectos de investigación
+- visualizaciones
+
+------------------------------------------------
+
+9. PROCESO EDITORIAL
+
+El proceso editorial del IMEG incluye:
+
+1 revisión interna de contenido  
+verificación básica de fuentes  
+revisión de redacción  
+publicación digital
+
+------------------------------------------------
+
+10. MISIÓN
+
+Contribuir al análisis del sistema económico global mediante investigación aplicada, desarrollo de bases de datos y producción de análisis rigurosos en español.
+
+------------------------------------------------
+
+11. VISIÓN
+
+Convertirse en una plataforma de referencia en el mundo hispanohablante para el análisis de economía internacional, geopolítica económica y datos globales.
+
+------------------------------------------------
+
+Instituto Mexicano de Estudios Globales
+IMEG

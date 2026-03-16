@@ -1,0 +1,254 @@
+CONTEXTO DEL PROYECTO
+
+Estoy desarrollando una plataforma digital llamada:
+
+Instituto Mexicano de Estudios Globales (IMEG)
+
+Es un proyecto tipo think tank enfocado en análisis económico, geopolítica económica, comercio internacional, logística global, economía ecológica y visualización de datos.
+
+El objetivo es crear una plataforma en español similar a:
+
+Our World in Data
+Bruegel
+Brookings
+Atlas of Economic Complexity
+
+Pero enfocada en análisis económico y geopolítico desde México.
+
+------------------------------------------------
+
+SITIO WEB
+
+El sitio está desplegado en:
+
+https://imeg.vercel.app
+
+La página funciona como un centro de análisis con:
+
+publicaciones
+datasets
+mapas
+proyectos de investigación
+perfiles de colaboradores
+
+------------------------------------------------
+
+STACK TECNOLÓGICO
+
+El proyecto usa:
+
+Next.js
+React
+Tailwind
+TypeScript
+Vercel
+GitHub
+
+El repositorio se despliega automáticamente en Vercel cuando se hace push al branch principal.
+
+------------------------------------------------
+
+ARQUITECTURA DEL PROYECTO
+
+La estructura principal es:
+
+app/
+content/
+public/
+lib/
+
+------------------------------------------------
+
+CARPETA APP
+
+Contiene las páginas del sitio.
+
+app/(site)/
+
+Dentro están las rutas:
+
+/
+instituto
+publicaciones
+datos
+mapas
+proyectos
+colaboradores
+
+También existe un editor interno:
+
+/editor-interno
+
+que permite generar artículos y datasets sin escribir código.
+
+------------------------------------------------
+
+CARPETA CONTENT
+
+Contiene los archivos editoriales.
+
+content/publicaciones/
+
+Archivos Markdown con artículos.
+
+Ejemplo:
+
+content/publicaciones/geopolitica-del-litio.md
+
+content/datasets/
+
+Archivos JSON con metadatos de datasets.
+
+------------------------------------------------
+
+CARPETA PUBLIC
+
+Contiene archivos estáticos.
+
+public/publicaciones/
+
+Imágenes de artículos.
+
+public/datasets/
+
+Archivos CSV de bases de datos.
+
+public/colaboradores/
+
+Fotos de colaboradores.
+
+------------------------------------------------
+
+CARPETA LIB
+
+Contiene definiciones del sistema:
+
+categorías
+colaboradores
+proyectos
+lectura de contenido
+
+------------------------------------------------
+
+MODELO EDITORIAL
+
+El sitio tiene tres tipos principales de contenido:
+
+ARTÍCULOS
+
+Análisis económico o geopolítico.
+
+Escritos en Markdown.
+
+Incluyen texto, subtítulos e imágenes.
+
+------------------------------------------------
+
+DATASETS
+
+Bases de datos estructuradas con:
+
+metadatos
+fuente primaria
+metodología
+variables
+
+Los datasets se almacenan como:
+
+JSON (metadatos)
+CSV (datos)
+
+------------------------------------------------
+
+PROYECTOS
+
+Líneas de investigación del instituto.
+
+Ejemplos:
+
+Nearshoring
+Infraestructura estratégica
+Logística global
+Economía ecológica
+
+------------------------------------------------
+
+EDITOR INTERNO
+
+Existe una herramienta en:
+
+/editor-interno
+
+que permite generar artículos y datasets.
+
+El editor produce un archivo ZIP con la estructura correcta para integrar contenido al repositorio.
+
+------------------------------------------------
+
+PROCESO DE PUBLICACIÓN
+
+Los colaboradores generan contenido usando el editor interno.
+
+Luego el contenido se copia en:
+
+content/
+public/
+
+Después se sube al repositorio usando:
+
+git add .
+git commit
+git push
+
+Vercel actualiza automáticamente el sitio.
+
+------------------------------------------------
+
+OBJETIVO DEL PROYECTO
+
+El objetivo del IMEG es convertirse en una plataforma de referencia en español para análisis económico global.
+
+El proyecto busca integrar:
+
+análisis económico
+geopolítica
+comercio internacional
+infraestructura
+economía ecológica
+datos estructurados
+
+------------------------------------------------
+
+PERFIL DEL FUNDADOR
+
+El proyecto fue creado por Ricardo Olivares.
+
+Economista mexicano especializado en:
+
+sector externo
+comercio internacional
+datos económicos
+logística global
+choques de oferta
+nearshoring
+
+------------------------------------------------
+
+TIPO DE AYUDA QUE NECESITO
+
+Cuando hagas sugerencias o generes código considera:
+
+que el proyecto usa Next.js
+que el contenido se gestiona con Markdown y JSON
+que el sitio funciona como un think tank
+
+Las soluciones deben ser:
+
+claras
+escalables
+fáciles de mantener
+compatibles con el stack actual
+
+------------------------------------------------
+
+FIN DEL CONTEXTO DEL PROYECTO
