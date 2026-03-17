@@ -1,4 +1,21 @@
 export default function MapasPage() {
+  // 1. Centralización de estilos para visualización territorial
+  const estilos = {
+    fondoSeccion: "bg-[#FDFDFD]",
+    etiquetaAcento: "text-[#FF204E] text-sm uppercase tracking-[0.2em] font-bold",
+    tituloPagina: "text-[#00224D] text-5xl font-semibold tracking-tight",
+    descripcionPagina: "text-[#334155] text-lg leading-8",
+    
+    // Tarjetas de Mapas
+    cardFondo: "bg-white border-slate-200 shadow-sm",
+    cardEstado: "text-[#FF204E] text-xs font-bold uppercase tracking-widest", // Para el "Próximamente"
+    cardTitulo: "text-[#00224D] text-2xl font-medium",
+    cardResumen: "text-[#4A5568] text-sm leading-7",
+    
+    // Decoración (opcional: un gradiente muy sutil para simular capas de mapa)
+    decoracion: "bg-gradient-to-br from-[#00224D]/5 to-transparent",
+  };
+
   const mapas = [
     {
       titulo: "Flujos logísticos en México",
@@ -18,15 +35,15 @@ export default function MapasPage() {
   ];
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-16">
+    <section className={`mx-auto max-w-7xl px-6 py-16 ${estilos.fondoSeccion}`}>
       <div className="max-w-3xl">
-        <p className="text-sm uppercase tracking-[0.2em] text-cyan-300">
+        <p className={estilos.etiquetaAcento}>
           Visualización territorial
         </p>
-        <h1 className="mt-4 text-5xl font-semibold tracking-tight text-white">
+        <h1 className={`mt-4 ${estilos.tituloPagina}`}>
           Mapas
         </h1>
-        <p className="mt-6 text-lg leading-8 text-slate-300">
+        <p className={`mt-6 ${estilos.descripcionPagina}`}>
           Visualizaciones geográficas, mapas interactivos y análisis espacial
           sobre comercio, logística, infraestructura y riesgos.
         </p>
@@ -36,15 +53,18 @@ export default function MapasPage() {
         {mapas.map((mapa) => (
           <div
             key={mapa.titulo}
-            className="rounded-3xl border border-white/10 bg-white/5 p-6"
+            className={`rounded-3xl border p-8 ${estilos.cardFondo} ${estilos.decoracion}`}
           >
-            <p className="text-sm text-cyan-300">Próximamente</p>
-            <h2 className="mt-2 text-2xl font-medium text-white">
+            <p className={estilos.cardEstado}>Próximamente</p>
+            <h2 className={`mt-2 ${estilos.cardTitulo}`}>
               {mapa.titulo}
             </h2>
-            <p className="mt-4 text-sm leading-7 text-slate-400">
+            <p className={`mt-4 ${estilos.cardResumen}`}>
               {mapa.resumen}
             </p>
+            
+            {/* Un pequeño detalle visual: un icono o placeholder de mapa */}
+            <div className="mt-8 h-1 w-12 bg-[#FF204E]/20 rounded-full" />
           </div>
         ))}
       </div>
