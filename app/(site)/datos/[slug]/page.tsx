@@ -12,19 +12,19 @@ const estilos = {
   etiquetaAcento: "text-[#FF204E] text-sm uppercase tracking-[0.2em] font-bold",
   tituloDataset: "text-[#00224D] text-5xl font-semibold",
   descripcionPrincipal: "text-[#334155] text-lg leading-8",
-  
+
   // Contenedores
   cardBlanca: "bg-white border-slate-200 shadow-sm",
   cardTitulos: "text-[#00224D] text-2xl font-semibold",
   cardTexto: "text-[#4A5568] leading-8",
-  
+
   // Elementos de la Ficha Técnica (Sidebar)
   fichaEtiqueta: "text-slate-500 text-xs uppercase tracking-wider font-semibold",
   fichaValor: "text-[#334155] font-medium",
-  
+
   // Bloques de Variables y Citas
   bloqueCodigo: "bg-slate-50 border-slate-100 text-[#334155] font-mono text-sm",
-  
+
   // Botones y Badges
   badgeAcceso: "bg-slate-100 border-slate-200 text-[#475569] px-3 py-1 rounded-full border text-xs font-semibold",
   botonSolicitud: "w-full rounded-full border-2 border-[#FF204E] text-[#FF204E] font-bold py-3 transition-all hover:bg-[#FF204E] hover:text-white hover:shadow-lg hover:shadow-[#FF204E]/20",
@@ -68,7 +68,7 @@ export default async function DatasetPage({ params }: Props) {
 
       <div className="mt-14 grid gap-8 lg:grid-cols-[1.3fr_0.7fr]">
         <div className="space-y-8">
-          
+
           {/* VARIABLES */}
           <div className={`rounded-3xl border p-8 ${estilos.cardBlanca}`}>
             <h2 className={estilos.cardTitulos}>

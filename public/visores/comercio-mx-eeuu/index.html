@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bubble Chart - Exportaciones México a EE.UU.</title>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <link rel="stylesheet" href="/visores/comercio-mx-eeuu/css/estilos.css" />
+</head>
+<body>
+  <!-- Universal IMEG Navbar -->
+  <link rel="stylesheet" href="/visores/shared-navbar.css" />
+  <nav class="imeg-shared-navbar">
+      <a href="/mapas" class="imeg-back-link">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Regresar a visores
+      </a>
+      <div class="imeg-brand">IMEG</div>
+  </nav>
+  <div class="wrap">
+    <div class="header">
+      <h1>Exportaciones de México a EE.UU.</h1>
+      <div id="subtitulo" class="sub">Bubble chart por sector · Cargando…</div>
+      <div class="chips">
+        <div class="chip">Cada burbuja = un sector</div>
+        <div class="chip">Tamaño = valor exportado</div>
+        <div class="chip">Color = rama</div>
+        <div class="chip">Click = resaltar rama completa</div>
+      </div>
+    </div>
+
+    <div id="chart">
+      <div id="tooltip" class="tooltip"></div>
+    </div>
+
+    <div class="legend-title">Ramas productivas</div>
+    <div id="legend" class="legend"></div>
+    <div id="estado-filtro" class="estado-filtro"></div>
+  </div>
+
+  <script src="/visores/comercio-mx-eeuu/js/app.js"></script>
+</body>
+</html>

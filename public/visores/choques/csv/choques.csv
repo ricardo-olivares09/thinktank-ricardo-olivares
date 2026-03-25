@@ -1,0 +1,23 @@
+mes,eventos,dominante,corredor,estado,intensidad_estado,tipo,hotspot,lon,lat,intensidad_hotspot
+Enero 2025,24,Bloqueos carreteros,Frontera noreste,Nuevo Leon,0.78,logistica,Monterrey,-100.31,25.67,0.72
+Enero 2025,24,Bloqueos carreteros,Frontera noreste,Tamaulipas,0.92,seguridad,Nuevo Laredo,-99.55,27.49,0.95
+Enero 2025,24,Bloqueos carreteros,Frontera noreste,Coahuila,0.55,logistica,Saltillo,-101.00,25.42,0.60
+Enero 2025,24,Bloqueos carreteros,Frontera noreste,Guanajuato,0.48,seguridad,Bajio,-101.25,20.95,0.50
+Enero 2025,24,Bloqueos carreteros,Frontera noreste,Veracruz,0.38,clima,Veracruz,-96.14,19.17,0.44
+Febrero 2025,19,Heladas y clima,Golfo logistico,Chihuahua,0.74,clima,Ciudad Juarez,-106.43,31.69,0.88
+Febrero 2025,19,Heladas y clima,Golfo logistico,Coahuila,0.70,clima,Saltillo,-101.00,25.42,0.70
+Febrero 2025,19,Heladas y clima,Golfo logistico,Nuevo Leon,0.63,logistica,Monterrey,-100.31,25.67,0.58
+Febrero 2025,19,Heladas y clima,Golfo logistico,San Luis Potosi,0.46,clima,San Luis Potosi,-100.98,22.15,0.48
+Marzo 2025,27,Aduanas y puertos,Pacifico portuario,Baja California,0.62,logistica,Tijuana,-117.04,32.51,0.64
+Marzo 2025,27,Aduanas y puertos,Pacifico portuario,Jalisco,0.64,logistica,Guadalajara,-103.35,20.67,0.60
+Marzo 2025,27,Aduanas y puertos,Pacifico portuario,Colima,0.82,logistica,Manzanillo,-104.32,19.05,0.98
+Marzo 2025,27,Aduanas y puertos,Pacifico portuario,Michoacan,0.58,seguridad,Lazaro Cardenas,-102.20,17.96,0.68
+Abril 2025,21,Sequia y clima extremo,Pacifico portuario,Sinaloa,0.72,clima,Culiacan,-107.39,24.80,0.76
+Abril 2025,21,Sequia y clima extremo,Pacifico portuario,Sonora,0.66,clima,Hermosillo,-110.95,29.07,0.72
+Abril 2025,21,Sequia y clima extremo,Pacifico portuario,Chihuahua,0.59,clima,Chihuahua,-106.08,28.63,0.62
+Mayo 2025,30,Bloqueos e inseguridad,Centro-sur,Michoacan,0.90,seguridad,Lazaro Cardenas,-102.20,17.96,0.78
+Mayo 2025,30,Bloqueos e inseguridad,Centro-sur,Guerrero,0.78,seguridad,Autopista del Sol,-99.80,18.90,0.84
+Mayo 2025,30,Bloqueos e inseguridad,Centro-sur,Puebla,0.44,seguridad,Puebla,-98.20,19.04,0.46
+Junio 2025,26,Tormentas y puertos,Golfo logistico,Veracruz,0.88,clima,Veracruz,-96.14,19.17,0.94
+Junio 2025,26,Tormentas y puertos,Golfo logistico,Tamaulipas,0.74,logistica,Altamira,-97.87,22.40,0.70
+Junio 2025,26,Tormentas y puertos,Golfo logistico,Tabasco,0.69,clima,Villahermosa,-92.93,17.99,0.62

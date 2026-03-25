@@ -1,0 +1,76 @@
+/* ========================================================================= 
+   IMEG Shared Viewer UI System
+   Injects the Awwwards-style Navbar and forces premium typography 
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
+
+/* --- Navigation Bar --- */
+.imeg-shared-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 4rem;
+    position: absolute; /* Using absolute so it overlays gracefully */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    font-family: 'Inter', sans-serif;
+    pointer-events: none; /* Only children should capture clicks */
+}
+
+.imeg-shared-navbar a {
+    pointer-events: auto;
+}
+
+.imeg-back-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #00224D;
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.3s ease;
+}
+
+.imeg-back-link:hover {
+    color: #FF204E;
+}
+
+.imeg-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #00224D;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    pointer-events: auto;
+}
+
+/* --- Global Typographic Enforcement --- */
+/* Forcing the Instrument Serif aesthetic onto existing viewer titles */
+h1, .title, .titulo, .eyebrow + h1 {
+    font-family: 'Instrument Serif', serif !important;
+    font-weight: 400 !important;
+    font-style: italic !important;
+    color: #00224D !important;
+    letter-spacing: -0.01em !important;
+}
+
+/* Add margin to existing main containers so they don't hide behind the navbar */
+#app, .wrap, .hero, .hero-grid, .contenedor-principal {
+    margin-top: 60px !important;
+}
+
+/* Media Query for responsive spacing */
+@media (max-width: 768px) {
+    .imeg-shared-navbar {
+        padding: 1.5rem;
+    }
+    #app, .wrap, .hero, .hero-grid, .contenedor-principal {
+        margin-top: 40px !important;
+    }
+}

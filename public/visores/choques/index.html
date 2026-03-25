@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mapa de choques de oferta en México</title>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+
+  <link rel="stylesheet" href="./css/estilos.css" />
+</head>
+<body>
+  <!-- Universal IMEG Navbar -->
+  <link rel="stylesheet" href="/visores/shared-navbar.css" />
+  <nav class="imeg-shared-navbar">
+      <a href="/mapas" class="imeg-back-link">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Regresar a visores
+      </a>
+      <div class="imeg-brand">IMEG</div>
+  </nav>
+  <div id="app">
+    <div id="titulo-superior" class="titulo-superior">Choques de oferta · Cargando...</div>
+    <canvas id="canvas"></canvas>
+    <svg class="overlay"></svg>
+
+    <div class="panel">
+      <div class="title">Choques de oferta en México</div>
+      <div class="subtitle">
+        Visualización de bloqueos, clima y disrupciones logísticas por estado y corredor.
+      </div>
+
+      <div id="mes-panel" class="mes">Cargando...</div>
+
+      <div id="detalle-panel" class="detalle">
+        <strong>Eventos:</strong> 0<br>
+        <strong>Choque dominante:</strong> —<br>
+        <strong>Corredor más presionado:</strong> —
+      </div>
+
+      <div class="chips">
+        <div class="chip">Datos desde CSV</div>
+        <div class="chip">Hotspots por estado</div>
+        <div class="chip">Corredores logísticos</div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <h3>Cómo leerlo</h3>
+      <div class="legend-item">
+        <span class="swatch" style="background:#ef4444"></span>
+        <span>Bloqueos, inseguridad o cierres</span>
+      </div>
+      <div class="legend-item">
+        <span class="swatch" style="background:#38bdf8"></span>
+        <span>Eventos climáticos</span>
+      </div>
+      <div class="legend-item">
+        <span class="swatch" style="background:#f59e0b"></span>
+        <span>Aduanas, puertos o logística</span>
+      </div>
+      <div class="legend-item">
+        <span class="swatch" style="background:#e2e8f0"></span>
+        <span>Mayor intensidad = mayor severidad</span>
+      </div>
+      <div class="note">
+        Luego esto se puede conectar con exportaciones, producción industrial, cruces fronterizos o tiempos logísticos.
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>

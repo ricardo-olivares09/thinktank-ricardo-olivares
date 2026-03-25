@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industria Automotriz de México | IMEG</title>
+    <!-- Fonts matching IMEG Next.js site -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="/mapas" class="back-link">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Regresar a visores
+        </a>
+        <div class="brand">IMEG</div>
+    </nav>
+
+    <!-- Header -->
+    <header class="hero">
+        <div class="subtitle">Análisis Económico</div>
+        <h1>Industria Automotriz en México</h1>
+        <p class="description">
+            Evolución histórica de componentes clave: producción nacional por armadora (carrera de barras), 
+            balanza comercial histórica y dinámica de volumen de ventas.
+        </p>
+    </header>
+
+    <main class="dashboard">
+        <!-- Section 1: Bar Chart Race -->
+        <section class="chart-section" id="section-produccion">
+            <div class="chart-header">
+                <h2>Producción Anual por Armadora</h2>
+                <p>Evolución de ensamblaje de vehículos ligeros en México (Unidades anualizadas).</p>
+                <div class="controls">
+                    <button id="play-pause-btn" class="btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                        Reproducir
+                    </button>
+                    <button id="replay-btn" class="btn btn-outline">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                        Reiniciar
+                    </button>
+                </div>
+            </div>
+            <div class="chart-container" id="chart-race"></div>
+        </section>
+
+        <!-- Section 2: Multi-Line Chart (Export/Import) -->
+        <section class="chart-section" id="section-comercio">
+            <div class="chart-header">
+                <h2>Balanza Comercial en Eje de Tiempo</h2>
+                <p>Volumen total de Exportación vs Importación de vehículos ligeros terminados.</p>
+            </div>
+            <div class="chart-container" id="chart-line"></div>
+        </section>
+
+        <!-- Section 3: Streamgraph (Ventas) -->
+        <section class="chart-section" id="section-ventas">
+            <div class="chart-header">
+                <h2>Composición de Ventas al Público</h2>
+                <p>Volumen de venta interna por marca y penetración de mercado a lo largo del tiempo.</p>
+            </div>
+            <div class="chart-container" id="chart-stream"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 Instituto Mexicano de Estudios Globales. Datos sintéticos representativos para diseño y arquitectura.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

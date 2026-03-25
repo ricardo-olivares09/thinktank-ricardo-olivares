@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 :root {
-  --background: #060d18;
-  --foreground: #e5eefb;
+  --background: #FDFDFD;
+  --foreground: #00224D;
+  --accent: #FF204E;
 }
 
 html {
@@ -12,5 +13,42 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Serif headings */
+h1, h2, h3, h4 {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+}
+
+/* Selection */
+::selection {
+  background: rgba(255, 32, 78, 0.12);
+  color: #00224D;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 34, 77, 0.10);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 34, 77, 0.22);
+}
+
+/* Focus visible */
+:focus-visible {
+  outline: 2px solid #FF204E;
+  outline-offset: 2px;
+  border-radius: 4px;
 }

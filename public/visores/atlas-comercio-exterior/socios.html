@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atlas del Comercio Exterior de México</title>
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <style>
+    :root {
+      --fondo: #08111f;
+      --fondo-2: #0d1b2f;
+      --panel: rgba(13, 27, 47, 0.72);
+      --borde: rgba(255, 255, 255, 0.12);
+      --texto: #eef4ff;
+      --subtexto: #a9bad6;
+      --acento: #3dd9c5;
+      --acento-2: #68a8ff;
+      --alerta: #ff9f43;
+      --sombra: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--texto);
+      background:
+        radial-gradient(circle at top left, rgba(61, 217, 197, 0.12), transparent 28%),
+        radial-gradient(circle at top right, rgba(104, 168, 255, 0.14), transparent 24%),
+        linear-gradient(160deg, #050b14 0%, #08111f 45%, #0b1730 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .contenedor {
+      width: min(1400px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      align-items: center;
+      padding: 28px 0 40px;
+      position: relative;
+    }
+
+    .barra-superior {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: var(--texto);
+    }
+
+    .logo-punto {
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--acento), var(--acento-2));
+      box-shadow: 0 0 18px rgba(61, 217, 197, 0.6);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 1.25fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .bloque-texto,
+    .bloque-mapa {
+      background: var(--panel);
+      border: 1px solid var(--borde);
+      border-radius: 28px;
+      backdrop-filter: blur(14px);
+      box-shadow: var(--sombra);
+    }
+
+    .bloque-texto {
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 720px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--acento);
+      font-size: 0.88rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.3rem, 5vw, 4.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      max-width: 10ch;
+    }
+
+    .subtitulo {
+      margin-top: 18px;
+      font-size: 1.06rem;
+      line-height: 1.7;
+      color: var(--subtexto);
+      max-width: 58ch;
+    }
+
+    .acciones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+      transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease;
+    }
+
+    button:hover { transform: translateY(-1px); }
+
+    .btn-principal,
+    .btn-secundario,
+    .chip {
+      border-radius: 999px;
+      padding: 12px 18px;
+      font-weight: 700;
+    }
+
+    .btn-principal {
+      background: linear-gradient(135deg, var(--acento), var(--acento-2));
+      color: #04111f;
+    }
+
+    .btn-secundario,
+    .chip {
+      background: rgba(255,255,255,0.05);
+      color: var(--texto);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .chip.activo {
+      background: rgba(61, 217, 197, 0.18);
+      color: #d9fff8;
+      border-color: rgba(61, 217, 197, 0.35);
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .tarjeta-kpi {
+      padding: 16px 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .tarjeta-kpi span {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--subtexto);
+      margin-bottom: 8px;
+    }
+
+    .tarjeta-kpi strong {
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .bloque-mapa {
+      padding: 16px;
+      min-height: 720px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-superior,
+    .panel-inferior {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding: 6px 8px;
+    }
+
+    .panel-superior p,
+    .panel-inferior p {
+      margin: 0;
+      color: var(--subtexto);
+      font-size: 0.92rem;
+    }
+
+    .estado-proyeccion {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      color: var(--texto);
+      font-weight: 700;
+    }
+
+    .mapa-wrap {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      background: radial-gradient(circle at 50% 10%, rgba(104,168,255,0.14), transparent 35%), linear-gradient(180deg, #091526 0%, #07111e 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .tooltip {
+      position: absolute;
+      pointer-events: none;
+      background: rgba(5, 11, 20, 0.92);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--texto);
+      padding: 10px 12px;
+      border-radius: 14px;
+      min-width: 170px;
+      box-shadow: var(--sombra);
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      font-size: 0.9rem;
+    }
+
+    .tooltip strong {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .leyenda {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .leyenda-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--subtexto);
+      font-size: 0.88rem;
+    }
+
+    .muestra {
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+    }
+
+    .panel-derecho {
+      position: absolute;
+      right: 26px;
+      top: 88px;
+      width: min(310px, calc(100% - 52px));
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(7, 14, 24, 0.72);
+      border: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(12px);
+      z-index: 3;
+    }
+
+    .panel-derecho h3 {
+      margin: 0 0 10px;
+      font-size: 1.05rem;
+    }
+
+    .panel-derecho p {
+      margin: 0 0 14px;
+      color: var(--subtexto);
+      line-height: 1.6;
+      font-size: 0.92rem;
+    }
+
+    .detalle-lista {
+      display: grid;
+      gap: 10px;
+    }
+
+    .detalle-item {
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .detalle-item span {
+      display: block;
+      color: var(--subtexto);
+      font-size: 0.78rem;
+      margin-bottom: 4px;
+    }
+
+    .detalle-item strong {
+      font-size: 1rem;
+    }
+
+    .nota {
+      color: var(--subtexto);
+      font-size: 0.82rem;
+      margin-top: 14px;
+    }
+
+    .pie-demo {
+      padding: 0 4px;
+      color: var(--subtexto);
+      font-size: 0.86rem;
+    }
+
+    @media (max-width: 1180px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bloque-texto,
+      .bloque-mapa {
+        min-height: auto;
+      }
+
+      .mapa-wrap {
+        min-height: 620px;
+      }
+
+      .panel-derecho {
+        position: static;
+        width: 100%;
+        margin: 0 0 4px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .bloque-texto,
+      .bloque-mapa {
+        border-radius: 22px;
+      }
+
+      .bloque-texto {
+        padding: 24px;
+      }
+
+      .kpis {
+        grid-template-columns: 1fr;
+      }
+
+      .mapa-wrap {
+        min-height: 500px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <div class="contenedor">
+      <div class="barra-superior">
+        <div class="logo">
+          <span class="logo-punto"></span>
+          <span>Atlas del Comercio Exterior de México</span>
+        </div>
+      </div>
+
+      <section class="hero-grid">
+        <article class="bloque-texto">
+          <div>
+            <div class="eyebrow">Propuesta visual interactiva</div>
+            <h1>México conectado al mundo</h1>
+            <p class="subtitulo">
+              Esta demo convierte el mapa en la firma visual de tu página: inicia con una lectura global tipo globo y se despliega hacia una vista analítica plana para explorar socios comerciales, sectores y riesgos logísticos.
+            </p>
+
+            <div class="acciones">
+              <button class="btn-principal" id="btnTransicion">Explorar comercio</button>
+              <button class="btn-secundario" id="btnReset">Volver al globo</button>
+            </div>
+
+            <div class="chips" id="chipsModo">
+              <button class="chip activo" data-modo="socios">Socios comerciales</button>
+              <button class="chip" data-modo="sectores">Sectores</button>
+              <button class="chip" data-modo="riesgo">Riesgo logístico</button>
+            </div>
+
+            <div class="kpis">
+              <div class="tarjeta-kpi">
+                <span>Exportaciones</span>
+                <strong>593.0 mil MDD</strong>
+              </div>
+              <div class="tarjeta-kpi">
+                <span>Importaciones</span>
+                <strong>625.3 mil MDD</strong>
+              </div>
+              <div class="tarjeta-kpi">
+                <span>Socio principal</span>
+                <strong>Estados Unidos</strong>
+              </div>
+              <div class="tarjeta-kpi">
+                <span>Sector líder</span>
+                <strong>Manufactura</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="pie-demo">
+            Demo conceptual para tu home: ideal como hero principal con transición narrativa de contexto global a análisis operativo.
+          </div>
+        </article>
+
+        <section class="bloque-mapa">
+          <div class="panel-superior">
+            <div class="estado-proyeccion">
+              <span>●</span>
+              <span id="estadoTexto">Vista globo</span>
+            </div>
+            <p id="descripcionModo">Flujos bilaterales de México con socios estratégicos.</p>
+          </div>
+
+          <div class="panel-derecho">
+            <h3 id="tituloPanel">Socios comerciales</h3>
+            <p id="textoPanel">Un globo centrado en México crea una entrada visual fuerte. Al desplegarse, la lectura pasa de geopolítica a análisis comparativo.</p>
+            <div class="detalle-lista" id="detallePanel">
+              <div class="detalle-item">
+                <span>País destacado</span>
+                <strong>Estados Unidos</strong>
+              </div>
+              <div class="detalle-item">
+                <span>Lectura sugerida</span>
+                <strong>Exportaciones, importaciones y balanza</strong>
+              </div>
+              <div class="detalle-item">
+                <span>Uso ideal</span>
+                <strong>Landing + transición a dashboard</strong>
+              </div>
+            </div>
+            <div class="nota">Los datos son ilustrativos. La estructura está pensada para conectarse después a tu base real.</div>
+          </div>
+
+          <div class="mapa-wrap" id="mapaWrap">
+            <svg id="mapa"></svg>
+            <div class="tooltip" id="tooltip"></div>
+          </div>
+
+          <div class="panel-inferior">
+            <div class="leyenda">
+              <div class="leyenda-item"><span class="muestra" style="background:#3dd9c5"></span> Exportaciones / conexión principal</div>
+              <div class="leyenda-item"><span class="muestra" style="background:#68a8ff"></span> Importaciones / conexión secundaria</div>
+              <div class="leyenda-item"><span class="muestra" style="background:#ff9f43"></span> Riesgo / evento disruptivo</div>
+            </div>
+            <p>Haz clic en “Explorar comercio” para desplegar la vista.</p>
+          </div>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const ancho = 920;
+    const alto = 640;
+    const svg = d3.select("#mapa").attr("viewBox", `0 0 ${ancho} ${alto}`);
+    const tooltip = d3.select("#tooltip");
+    const estadoTexto = document.getElementById("estadoTexto");
+    const descripcionModo = document.getElementById("descripcionModo");
+    const tituloPanel = document.getElementById("tituloPanel");
+    const textoPanel = document.getElementById("textoPanel");
+    const detallePanel = document.getElementById("detallePanel");
+
+    const mexico = [-102, 23.5];
+    let progreso = 0;
+    let modo = "socios";
+
+    const datos = {
+      socios: [
+        { nombre: "Estados Unidos", coord: [-98, 39], valor: "482 mil MDD", color: "#3dd9c5" },
+        { nombre: "Canadá", coord: [-106, 57], valor: "18 mil MDD", color: "#68a8ff" },
+        { nombre: "China", coord: [104, 35], valor: "115 mil MDD", color: "#68a8ff" },
+        { nombre: "Alemania", coord: [10, 51], valor: "25 mil MDD", color: "#3dd9c5" },
+        { nombre: "Brasil", coord: [-52, -10], valor: "14 mil MDD", color: "#68a8ff" }
+      ],
+      sectores: [
+        { nombre: "Automotriz", coord: [-83, 33], valor: "Vehículos y autopartes", color: "#3dd9c5" },
+        { nombre: "Electrónica", coord: [121, 24], valor: "Componentes y equipo", color: "#68a8ff" },
+        { nombre: "Agroindustria", coord: [-3, 40], valor: "Alimentos y bebidas", color: "#3dd9c5" },
+        { nombre: "Energía", coord: [-46, 24], valor: "Combustibles e insumos", color: "#ff9f43" }
+      ],
+      riesgo: [
+        { nombre: "Bloqueo fronterizo", coord: [-99.5, 27.5], valor: "Corredor Laredo", color: "#ff9f43" },
+        { nombre: "Huracán", coord: [-96, 20], valor: "Golfo de México", color: "#ff9f43" },
+        { nombre: "Incendios", coord: [-120, 38], valor: "Costa oeste de EE.UU.", color: "#ff9f43" },
+        { nombre: "Cuello de botella marítimo", coord: [103, 1.3], valor: "Asia-Pacífico", color: "#68a8ff" }
+      ]
+    };
+
+    const paneles = {
+      socios: {
+        titulo: "Socios comerciales",
+        texto: "Esta versión resalta conexiones bilaterales clave. La transición sirve para ir de una lectura geopolítica a una operativa sin romper la experiencia visual.",
+        items: [
+          ["Enfoque", "Países y corredores principales"],
+          ["Interacción", "Hover con tooltip + clic futuro"],
+          ["Mejor uso", "Home y módulo de exploración global"]
+        ],
+        descripcion: "Flujos bilaterales de México con socios estratégicos."
+      },
+      sectores: {
+        titulo: "Sectores estratégicos",
+        texto: "Aquí el mapa deja de mostrar solo países y empieza a contar una historia sectorial: automotriz, electrónica, agroindustria y energía.",
+        items: [
+          ["Enfoque", "Capas por sector exportador"],
+          ["Lectura", "Productos, destino y peso relativo"],
+          ["Mejor uso", "Presentar especialización productiva"]
+        ],
+        descripcion: "Capas por industria para mostrar especialización exportadora."
+      },
+      riesgo: {
+        titulo: "Riesgo logístico",
+        texto: "Este modo dialoga perfecto con tu perfil: el mapa se convierte en una herramienta para ubicar disrupciones, vulnerabilidades y exposición comercial.",
+        items: [
+          ["Enfoque", "Eventos anormales y cuellos de botella"],
+          ["Lectura", "Choques, severidad y rutas afectadas"],
+          ["Mejor uso", "Nearshoring, logística y alertas"]
+        ],
+        descripcion: "Disrupciones y vulnerabilidades sobre rutas clave del comercio exterior."
+      }
+    };
+
+    const projectionOrtho = d3.geoOrthographic()
+      .translate([ancho / 2, alto / 2])
+      .scale(255)
+      .rotate([102, -23])
+      .clipAngle(90)
+      .precision(0.5);
+
+    const projectionEq = d3.geoEquirectangular()
+      .translate([ancho / 2, alto / 2])
+      .scale(150)
+      .center([0, 15]);
+
+    function proyeccionInterpolada(lambda, phi) {
+      const a = projectionOrtho([lambda, phi]);
+      const b = projectionEq([lambda, phi]);
+      if (!a && !b) return null;
+      if (!a) return b;
+      if (!b) return a;
+      return [a[0] * (1 - progreso) + b[0] * progreso, a[1] * (1 - progreso) + b[1] * progreso];
+    }
+
+    const proyeccionCustom = d3.geoProjection(function(lambda, phi) {
+      const coord = proyeccionInterpolada(lambda * 180 / Math.PI, phi * 180 / Math.PI);
+      return coord ? [(coord[0] - ancho / 2) / 220, -(coord[1] - alto / 2) / 220] : null;
+    }).scale(220).translate([ancho / 2, alto / 2]);
+
+    const path = d3.geoPath(proyeccionCustom);
+
+    const graticule = d3.geoGraticule10();
+    const defs = svg.append("defs");
+
+    const gradienteFondo = defs.append("radialGradient")
+      .attr("id", "halo")
+      .attr("cx", "50%")
+      .attr("cy", "45%");
+
+    gradienteFondo.append("stop").attr("offset", "0%").attr("stop-color", "rgba(104,168,255,0.18)");
+    gradienteFondo.append("stop").attr("offset", "100%").attr("stop-color", "rgba(104,168,255,0)");
+
+    svg.append("rect")
+      .attr("width", ancho)
+      .attr("height", alto)
+      .attr("fill", "url(#halo)");
+
+    const gBase = svg.append("g");
+    const gRutas = svg.append("g");
+    const gPuntos = svg.append("g");
+
+    const esfera = { type: "Sphere" };
+
+    gBase.append("path")
+      .datum(esfera)
+      .attr("class", "esfera")
+      .attr("fill", "rgba(104,168,255,0.08)")
+      .attr("stroke", "rgba(255,255,255,0.12)")
+      .attr("stroke-width", 1.1);
+
+    gBase.append("path")
+      .datum(graticule)
+      .attr("class", "reticula")
+      .attr("fill", "none")
+      .attr("stroke", "rgba(255,255,255,0.10)")
+      .attr("stroke-width", 0.7);
+
+    const mundoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+
+    async function iniciar() {
+      const mundo = await d3.json(mundoUrl);
+      const paises = topojson.feature(mundo, mundo.objects.countries);
+
+      gBase.append("path")
+        .datum(paises)
+        .attr("class", "tierra")
+        .attr("fill", "rgba(220,233,255,0.92)")
+        .attr("stroke", "rgba(3,10,19,0.28)")
+        .attr("stroke-width", 0.5);
+
+      renderizar();
+      animarGlobo();
+    }
+
+    const topoScript = document.createElement("script");
+    topoScript.src = "https://cdn.jsdelivr.net/npm/topojson-client@3";
+    topoScript.onload = iniciar;
+    document.head.appendChild(topoScript);
+
+    function lineaCurva(origen, destino) {
+      return {
+        type: "LineString",
+        coordinates: [origen, destino]
+      };
+    }
+
+    function renderizar() {
+      gBase.selectAll("path").attr("d", path);
+
+      const puntos = datos[modo];
+      const rutas = puntos.map(d => ({ ...d, geo: lineaCurva(mexico, d.coord) }));
+
+      const selRutas = gRutas.selectAll("path").data(rutas, d => d.nombre);
+      selRutas.join(
+        enter => enter.append("path")
+          .attr("fill", "none")
+          .attr("stroke", d => d.color)
+          .attr("stroke-width", d => modo === "riesgo" ? 2.4 : 2)
+          .attr("stroke-linecap", "round")
+          .attr("opacity", 0.9)
+          .attr("stroke-dasharray", modo === "riesgo" ? "4 7" : "2 6")
+          .attr("d", d => path(d.geo)),
+        update => update
+          .transition().duration(400)
+          .attr("stroke", d => d.color)
+          .attr("stroke-width", d => modo === "riesgo" ? 2.4 : 2)
+          .attr("stroke-dasharray", modo === "riesgo" ? "4 7" : "2 6")
+          .attr("d", d => path(d.geo)),
+        exit => exit.remove()
+      );
+
+      const selPuntos = gPuntos.selectAll("g.punto").data(puntos, d => d.nombre);
+
+      const enterPuntos = selPuntos.enter().append("g").attr("class", "punto");
+      enterPuntos.append("circle").attr("r", 0);
+      enterPuntos.append("circle").attr("class", "pulso").attr("r", 0).attr("fill", "none");
+      enterPuntos.append("text")
+        .attr("text-anchor", "middle")
+        .attr("dy", -12)
+        .attr("fill", "rgba(238,244,255,0.9)")
+        .attr("font-size", 11)
+        .attr("font-weight", 700)
+        .text(d => d.nombre);
+
+      const todosPuntos = enterPuntos.merge(selPuntos);
+
+      todosPuntos.each(function(d) {
+        const coord = proyeccionInterpolada(d.coord[0], d.coord[1]);
+        if (!coord) return;
+        d3.select(this).attr("transform", `translate(${coord[0]},${coord[1]})`);
+      });
+
+      todosPuntos.select("circle:not(.pulso)")
+        .transition().duration(400)
+        .attr("r", 5.5)
+        .attr("fill", d => d.color)
+        .attr("stroke", "rgba(255,255,255,0.85)")
+        .attr("stroke-width", 1.2);
+
+      todosPuntos.select("circle.pulso")
+        .attr("stroke", d => d.color)
+        .attr("stroke-width", 1.4)
+        .transition().duration(400)
+        .attr("r", 11)
+        .attr("opacity", 0.45);
+
+      todosPuntos.select("text")
+        .attr("opacity", progreso > 0.15 ? 1 : 0.7)
+        .attr("font-size", progreso > 0.6 ? 12 : 10);
+
+      todosPuntos
+        .on("mousemove", function(event, d) {
+          tooltip.style("opacity", 1)
+            .style("transform", "translateY(0)")
+            .html(`<strong>${d.nombre}</strong><div>${d.valor}</div>`)
+            .style("left", `${event.offsetX + 18}px`)
+            .style("top", `${event.offsetY + 18}px`);
+        })
+        .on("mouseleave", function() {
+          tooltip.style("opacity", 0).style("transform", "translateY(8px)");
+        });
+
+      const mx = proyeccionInterpolada(mexico[0], mexico[1]);
+      const marcaMexico = svg.selectAll("circle.mexico-base").data(mx ? [mx] : []);
+      marcaMexico.join("circle")
+        .attr("class", "mexico-base")
+        .attr("cx", d => d[0])
+        .attr("cy", d => d[1])
+        .attr("r", 7)
+        .attr("fill", "#ffffff")
+        .attr("stroke", "#3dd9c5")
+        .attr("stroke-width", 2.2);
+
+      estadoTexto.textContent = progreso < 0.5 ? "Vista globo" : "Vista analítica";
+      actualizarPanel();
+    }
+
+    function actualizarPanel() {
+      const panel = paneles[modo];
+      tituloPanel.textContent = panel.titulo;
+      textoPanel.textContent = panel.texto;
+      descripcionModo.textContent = panel.descripcion;
+      detallePanel.innerHTML = panel.items.map(([a, b]) => `
+        <div class="detalle-item">
+          <span>${a}</span>
+          <strong>${b}</strong>
+        </div>
+      `).join("");
+    }
+
+    function transicionarMeta(meta) {
+      const inicio = progreso;
+      d3.transition()
+        .duration(1400)
+        .ease(d3.easeCubicInOut)
+        .tween("proyeccion", () => {
+          const interp = d3.interpolateNumber(inicio, meta);
+          return t => {
+            progreso = interp(t);
+            renderizar();
+          };
+        });
+    }
+
+    function animarGlobo() {
+      d3.timer((elapsed) => {
+        if (progreso > 0.08) return;
+        projectionOrtho.rotate([102 - elapsed * 0.0035, -23]);
+        renderizar();
+      });
+    }
+
+    document.getElementById("btnTransicion").addEventListener("click", () => transicionarMeta(1));
+    document.getElementById("btnReset").addEventListener("click", () => {
+      progreso = 0;
+      projectionOrtho.rotate([102, -23]);
+      renderizar();
+    });
+
+    document.querySelectorAll("#chipsModo .chip").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll("#chipsModo .chip").forEach(x => x.classList.remove("activo"));
+        btn.classList.add("activo");
+        modo = btn.dataset.modo;
+        renderizar();
+      });
+    });
+  </script>
+</body>
+</html>

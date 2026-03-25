@@ -1,0 +1,35 @@
+tipo,nombre,etiqueta,tension,riesgo,importancia,lon,lat,ruta,orden,color_ruta
+punto,Estrecho de Ormuz,Ormuz,Alta,Energia y disrupcion naval,Paso critico para flujos energeticos,56.25,26.56,,,
+punto,Canal de Suez,Suez,Alta,Canal estrategico y cuellos de botella,Conecta Asia con Europa,32.55,30.7,,,
+punto,Bab el-Mandeb,Bab el-Mandeb,Alta,Riesgo maritimo y seguridad regional,Entrada al Mar Rojo,43.3,12.7,,,
+punto,Estrecho de Malaca,Malaca,Media,Concentracion de trafico maritimo,Principal corredor Asia-Europa,100.9,2.7,,,
+punto,Canal de Panama,Panama,Media,Restriccion hidrica y saturacion,Conecta Atlantico y Pacifico,-79.55,9.08,,,
+punto,Estrecho de Gibraltar,Gibraltar,Media,Acceso al Mediterraneo,Puerta entre Atlantico y Europa,-5.61,35.97,,,
+punto,Bosforo,Bosforo,Media,Trafico y sensibilidad regional,Conexion Mar Negro-Mediterraneo,29.04,41.04,,,
+ruta,Atlantico -> Mediterraneo,,,,,-74,40,Atlantico -> Mediterraneo,1,#38bdf8
+ruta,Atlantico -> Mediterraneo,,,,,-20,36,Atlantico -> Mediterraneo,2,#38bdf8
+ruta,Atlantico -> Mediterraneo,,,,,-5.61,35.97,Atlantico -> Mediterraneo,3,#38bdf8
+ruta,Atlantico -> Mediterraneo,,,,,10,35,Atlantico -> Mediterraneo,4,#38bdf8
+ruta,Atlantico -> Mediterraneo,,,,,32.55,30.7,Atlantico -> Mediterraneo,5,#38bdf8
+ruta,Suez -> Asia,,,,,32.55,30.7,Suez -> Asia,1,#38bdf8
+ruta,Suez -> Asia,,,,,43.3,12.7,Suez -> Asia,2,#38bdf8
+ruta,Suez -> Asia,,,,,60,12,Suez -> Asia,3,#38bdf8
+ruta,Suez -> Asia,,,,,80,8,Suez -> Asia,4,#38bdf8
+ruta,Suez -> Asia,,,,,100.9,2.7,Suez -> Asia,5,#38bdf8
+ruta,Suez -> Asia,,,,,121,23,Suez -> Asia,6,#38bdf8
+ruta,Golfo Persico,,,,,51.5,25.3,Golfo Persico,1,#38bdf8
+ruta,Golfo Persico,,,,,56.25,26.56,Golfo Persico,2,#38bdf8
+ruta,Golfo Persico,,,,,66,20,Golfo Persico,3,#38bdf8
+ruta,Golfo Persico,,,,,80,14,Golfo Persico,4,#38bdf8
+ruta,Golfo Persico,,,,,100.9,2.7,Golfo Persico,5,#38bdf8
+ruta,Pacifico -> Panama,,,,,140,35,Pacifico -> Panama,1,#38bdf8
+ruta,Pacifico -> Panama,,,,,170,25,Pacifico -> Panama,2,#38bdf8
+ruta,Pacifico -> Panama,,,,,-150,18,Pacifico -> Panama,3,#38bdf8
+ruta,Pacifico -> Panama,,,,,-110,12,Pacifico -> Panama,4,#38bdf8
+ruta,Pacifico -> Panama,,,,,-79.55,9.08,Pacifico -> Panama,5,#38bdf8
+ruta,Pacifico -> Panama,,,,,-60,15,Pacifico -> Panama,6,#38bdf8
+ruta,Europa oriental,,,,,35,44,Europa oriental,1,#38bdf8
+ruta,Europa oriental,,,,,29.04,41.04,Europa oriental,2,#38bdf8
+ruta,Europa oriental,,,,,20,38,Europa oriental,3,#38bdf8
+ruta,Europa oriental,,,,,10,35,Europa oriental,4,#38bdf8
+ruta,Europa oriental,,,,,-5.61,35.97,Europa oriental,5,#38bdf8

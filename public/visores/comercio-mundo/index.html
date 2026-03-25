@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>México y el mundo · World Tour</title>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="https://unpkg.com/topojson-client@3"></script>
+
+  <link rel="stylesheet" href="/visores/comercio-mundo/css/estilos.css" />
+</head>
+<body>
+  <!-- Universal IMEG Navbar -->
+  <link rel="stylesheet" href="/visores/shared-navbar.css" />
+  <nav class="imeg-shared-navbar">
+      <a href="/mapas" class="imeg-back-link">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Regresar a visores
+      </a>
+      <div class="imeg-brand">IMEG</div>
+  </nav>
+  <div id="app">
+    <div id="nombre-pais-superior" class="nombre-pais-superior">México</div>
+
+    <div class="panel">
+      <div class="titulo">México y el mundo</div>
+      <div class="subtitulo">
+        Recorrido visual por todos los países específicos con dato disponible en tu tabla de <strong id="periodo-panel">Cargando…</strong>.
+      </div>
+
+      <div class="actual">
+        <div id="pais-actual" class="pais">Cargando…</div>
+        <div id="detalle-actual" class="detalle"></div>
+      </div>
+
+      <div class="chips">
+        <div class="chip">Origen: México</div>
+        <div class="chip">Todos los países con dato</div>
+        <div class="chip positivo">Azul = saldo positivo</div>
+        <div class="chip negativo">Rosa = saldo negativo</div>
+      </div>
+    </div>
+
+    <div class="leyenda">
+      <h3>Cómo leerlo</h3>
+      <div class="item-leyenda">
+        <span class="swatch" style="background:#f59e0b"></span>
+        <span>México como punto de origen</span>
+      </div>
+      <div class="item-leyenda">
+        <span class="swatch" style="background:#38bdf8"></span>
+        <span>Saldo positivo</span>
+      </div>
+      <div class="item-leyenda">
+        <span class="swatch" style="background:#fb7185"></span>
+        <span>Saldo negativo</span>
+      </div>
+      <div class="item-leyenda">
+        <span class="swatch" style="background:#e2e8f0"></span>
+        <span>El grosor del arco refleja la magnitud</span>
+      </div>
+      <div class="footer-nota">
+        Se incluyen países específicos con valor numérico. Se excluyen agregados regionales y casos sin dato. Si algún país no se ilumina, normalmente es porque su nombre en el mapa viene distinto y solo hay que ajustar la columna <code>mapa</code> del CSV.
+      </div>
+    </div>
+  </div>
+
+  <script src="/visores/comercio-mundo/js/app.js"></script>
+</body>
+</html>

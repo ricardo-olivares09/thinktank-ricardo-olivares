@@ -11,23 +11,23 @@ type Props = {
 // 1. Centralización de colores y estilos
 const estilos = {
   fondoSeccion: "bg-[#FDFDFD]",
-  
+
   // Contenedor lateral (Avatar y Nombre)
   panelLateral: "bg-white border-slate-200 shadow-sm",
   avatarFondo: "bg-[#00224D]", // Azul profundo para el círculo de iniciales
-  
+
   // Tipografía
   etiquetaAcento: "text-[#FF204E] uppercase tracking-[0.18em] text-sm font-bold",
   tituloNombre: "text-[#00224D] text-4xl font-semibold tracking-tight",
   subtituloRol: "text-[#FF204E] text-lg font-medium",
   textoBio: "text-[#334155] text-lg leading-9",
   tituloSecundario: "text-[#00224D] text-2xl font-semibold",
-  
+
   // Tarjetas de publicaciones relacionadas
   cardPub: "bg-white border-slate-200 hover:border-[#FF204E]/40 hover:shadow-md",
   cardPubTitulo: "text-[#00224D] text-xl font-medium",
   cardPubResumen: "text-[#64748B] text-sm leading-7",
-  
+
   transicion: "transition-all duration-300 ease-out",
 };
 
@@ -53,7 +53,7 @@ export default async function ColaboradorIndividualPage({ params }: Props) {
   return (
     <section className={`mx-auto max-w-6xl px-6 py-16 ${estilos.fondoSeccion}`}>
       <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-        
+
         {/* PANEL LATERAL: Perfil resumido */}
         <div className={`rounded-3xl border p-8 ${estilos.panelLateral}`}>
           <div className={`grid h-20 w-20 place-items-center rounded-2xl text-2xl font-semibold text-white ${estilos.avatarFondo}`}>

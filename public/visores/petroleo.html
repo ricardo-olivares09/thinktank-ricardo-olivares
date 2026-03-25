@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Importaciones petroleras de México · Streamgraph</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      --bg: #FDFDFD;
+      --panel: rgba(255, 255, 255, 0.95);
+      --border: rgba(0, 34, 77, 0.1);
+      --text: #00224D;
+      --muted: #64748B;
+      --grid: rgba(0, 34, 77, 0.05);
+      --shadow: 0 12px 40px rgba(0, 34, 77, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(2, 132, 199, 0.04), transparent 25%),
+        radial-gradient(circle at 80% 10%, rgba(255, 32, 78, 0.04), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      font-family: "Inter", system-ui, sans-serif;
+    }
+
+    #app {
+      min-height: 100vh;
+      padding: 32px;
+    }
+
+    .wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+    }
+
+    .info {
+      flex: 1 1 520px;
+    }
+
+    .controls {
+      flex: 0 0 auto;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .title {
+      margin: 0 0 12px 0;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+      color: #00224D;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .chip {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(0, 34, 77, 0.03);
+      color: var(--text);
+    }
+
+    button {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: rgba(0, 34, 77, 0.02);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 12px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      background: rgba(0, 34, 77, 0.06);
+      border-color: rgba(0, 34, 77, 0.15);
+    }
+
+    button.active {
+      background: rgba(2, 132, 199, 0.1);
+      border-color: rgba(2, 132, 199, 0.3);
+      color: #0284c7;
+    }
+
+    .chart-panel {
+      position: relative;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 32px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      overflow: visible;
+    }
+
+    .axis text,
+    .axis path,
+    .axis line {
+      color: var(--muted);
+      stroke: rgba(0, 34, 77, 0.1);
+      font-size: 12px;
+    }
+
+    .grid line {
+      stroke: var(--grid);
+    }
+
+    .grid path {
+      stroke: none;
+    }
+
+    .stream {
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .stream.dimmed {
+      opacity: 0.15;
+    }
+
+    .legend {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text);
+      background: rgba(0, 34, 77, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 14px;
+    }
+
+    .legend-swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 4px;
+      flex: 0 0 12px;
+    }
+
+    .tooltip {
+      position: absolute;
+      visibility: hidden;
+      pointer-events: none;
+      z-index: 5;
+      min-width: 260px;
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.98);
+      color: #00224D;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 50px rgba(0, 34, 77, 0.15);
+      backdrop-filter: blur(12px);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .tooltip .tt-title {
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: #00224D;
+    }
+
+    .tooltip .tt-row {
+      color: var(--muted);
+      margin: 4px 0;
+    }
+
+    .tooltip .tt-row b {
+      color: #00224D;
+    }
+
+    @media (max-width: 768px) {
+      #app { padding: 16px; }
+      .title { font-size: 24px; }
+      .controls { width: 100%; justify-content: flex-start; }
+      .chart-panel { padding: 16px; border-radius: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Universal IMEG Navbar -->
+  <link rel="stylesheet" href="/visores/shared-navbar.css" />
+  <nav class="imeg-shared-navbar">
+      <a href="/mapas" class="imeg-back-link">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Regresar a visores
+      </a>
+      <div class="imeg-brand">IMEG</div>
+  </nav>
+  <div id="app">
+    <div class="wrap">
+      <div class="topbar">
+        <div class="panel info">
+          <div class="title">Importaciones petroleras de México</div>
+          <div class="subtitle">
+            Demo conceptual con datos inventados para mostrar un <strong>streamgraph con transición</strong> entre volumen y participación.
+          </div>
+          <div class="chips">
+            <div class="chip">Datos simulados</div>
+            <div class="chip">2018–2026</div>
+            <div class="chip">Vista editorial</div>
+          </div>
+        </div>
+
+        <div class="panel controls">
+          <button id="btn-volumen" class="active">Volumen</button>
+          <button id="btn-share">Participación %</button>
+        </div>
+      </div>
+
+      <div class="chart-panel">
+        <div id="tooltip" class="tooltip"></div>
+        <svg id="chart"></svg>
+        <div id="legend" class="legend"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const datos = [
+      {anio: 2018, pais: "Estados Unidos", valor: 610},
+      {anio: 2018, pais: "Canadá", valor: 120},
+      {anio: 2018, pais: "Arabia Saudita", valor: 240},
+      {anio: 2018, pais: "Brasil", valor: 85},
+      {anio: 2018, pais: "Irak", valor: 150},
+      {anio: 2018, pais: "Colombia", valor: 70},
+      {anio: 2018, pais: "Nigeria", valor: 92},
+      {anio: 2018, pais: "España", valor: 45},
+
+      {anio: 2019, pais: "Estados Unidos", valor: 640},
+      {anio: 2019, pais: "Canadá", valor: 128},
+      {anio: 2019, pais: "Arabia Saudita", valor: 260},
+      {anio: 2019, pais: "Brasil", valor: 96},
+      {anio: 2019, pais: "Irak", valor: 155},
+      {anio: 2019, pais: "Colombia", valor: 76},
+      {anio: 2019, pais: "Nigeria", valor: 104},
+      {anio: 2019, pais: "España", valor: 48},
+
+      {anio: 2020, pais: "Estados Unidos", valor: 590},
+      {anio: 2020, pais: "Canadá", valor: 118},
+      {anio: 2020, pais: "Arabia Saudita", valor: 210},
+      {anio: 2020, pais: "Brasil", valor: 88},
+      {anio: 2020, pais: "Irak", valor: 130},
+      {anio: 2020, pais: "Colombia", valor: 64},
+      {anio: 2020, pais: "Nigeria", valor: 95},
+      {anio: 2020, pais: "España", valor: 42},
+
+      {anio: 2021, pais: "Estados Unidos", valor: 720},
+      {anio: 2021, pais: "Canadá", valor: 144},
+      {anio: 2021, pais: "Arabia Saudita", valor: 235},
+      {anio: 2021, pais: "Brasil", valor: 110},
+      {anio: 2021, pais: "Irak", valor: 142},
+      {anio: 2021, pais: "Colombia", valor: 78},
+      {anio: 2021, pais: "Nigeria", valor: 120},
+      {anio: 2021, pais: "España", valor: 51},
+
+      {anio: 2022, pais: "Estados Unidos", valor: 810},
+      {anio: 2022, pais: "Canadá", valor: 166},
+      {anio: 2022, pais: "Arabia Saudita", valor: 280},
+      {anio: 2022, pais: "Brasil", valor: 126},
+      {anio: 2022, pais: "Irak", valor: 164},
+      {anio: 2022, pais: "Colombia", valor: 86},
+      {anio: 2022, pais: "Nigeria", valor: 132},
+      {anio: 2022, pais: "España", valor: 58},
+
+      {anio: 2023, pais: "Estados Unidos", valor: 860},
+      {anio: 2023, pais: "Canadá", valor: 172},
+      {anio: 2023, pais: "Arabia Saudita", valor: 310},
+      {anio: 2023, pais: "Brasil", valor: 138},
+      {anio: 2023, pais: "Irak", valor: 172},
+      {anio: 2023, pais: "Colombia", valor: 92},
+      {anio: 2023, pais: "Nigeria", valor: 146},
+      {anio: 2023, pais: "España", valor: 60},
+
+      {anio: 2024, pais: "Estados Unidos", valor: 930},
+      {anio: 2024, pais: "Canadá", valor: 186},
+      {anio: 2024, pais: "Arabia Saudita", valor: 340},
+      {anio: 2024, pais: "Brasil", valor: 150},
+      {anio: 2024, pais: "Irak", valor: 185},
+      {anio: 2024, pais: "Colombia", valor: 102},
+      {anio: 2024, pais: "Nigeria", valor: 152},
+      {anio: 2024, pais: "España", valor: 66},
+
+      {anio: 2025, pais: "Estados Unidos", valor: 980},
+      {anio: 2025, pais: "Canadá", valor: 192},
+      {anio: 2025, pais: "Arabia Saudita", valor: 355},
+      {anio: 2025, pais: "Brasil", valor: 162},
+      {anio: 2025, pais: "Irak", valor: 194},
+      {anio: 2025, pais: "Colombia", valor: 108},
+      {anio: 2025, pais: "Nigeria", valor: 161},
+      {anio: 2025, pais: "España", valor: 70},
+
+      {anio: 2026, pais: "Estados Unidos", valor: 1040},
+      {anio: 2026, pais: "Canadá", valor: 205},
+      {anio: 2026, pais: "Arabia Saudita", valor: 372},
+      {anio: 2026, pais: "Brasil", valor: 174},
+      {anio: 2026, pais: "Irak", valor: 205},
+      {anio: 2026, pais: "Colombia", valor: 114},
+      {anio: 2026, pais: "Nigeria", valor: 168},
+      {anio: 2026, pais: "España", valor: 74}
+    ];
+
+    const paises = [...new Set(datos.map(d => d.pais))];
+    const anios = [...new Set(datos.map(d => d.anio))];
+
+    const colores = d3.scaleOrdinal()
+      .domain(paises)
+      .range([
+        "#38bdf8",
+        "#818cf8",
+        "#f59e0b",
+        "#10b981",
+        "#fb7185",
+        "#22c55e",
+        "#a78bfa",
+        "#f97316"
+      ]);
+
+    const tooltip = d3.select("#tooltip");
+    const svg = d3.select("#chart");
+    const legend = d3.select("#legend");
+
+    const margin = {top: 20, right: 20, bottom: 40, left: 20};
+    let modo = "volumen";
+
+    function prepararDatos(modoActual) {
+      const porAnio = d3.rollup(
+        datos,
+        v => {
+          const obj = {anio: v[0].anio};
+          const total = d3.sum(v, d => d.valor);
+          paises.forEach(p => {
+            const fila = v.find(d => d.pais === p);
+            const valor = fila ? fila.valor : 0;
+            obj[p] = modoActual === "share" ? (valor / total) * 100 : valor;
+          });
+          return obj;
+        },
+        d => d.anio
+      );
+
+      return Array.from(porAnio.values()).sort((a, b) => d3.ascending(a.anio, b.anio));
+    }
+
+    function dibujarLeyenda() {
+      legend.selectAll("*").remove();
+
+      legend.selectAll("div")
+        .data(paises)
+        .join("div")
+        .attr("class", "legend-item")
+        .html(d => `
+          <span class="legend-swatch" style="background:${colores(d)}"></span>
+          <span>${d}</span>
+        `);
+    }
+
+    function render() {
+      const cont = svg.node().parentNode;
+      const width = cont.clientWidth - 28;
+      const height = 620;
+
+      svg.attr("viewBox", [0, 0, width, height]);
+
+      const dataWide = prepararDatos(modo);
+
+      const stack = d3.stack()
+        .keys(paises)
+        .offset(d3.stackOffsetWiggle)
+        .order(d3.stackOrderInsideOut);
+
+      const layers = stack(dataWide);
+
+      const x = d3.scaleLinear()
+        .domain(d3.extent(anios))
+        .range([margin.left, width - margin.right]);
+
+      const y = d3.scaleLinear()
+        .domain([
+          d3.min(layers, layer => d3.min(layer, d => d[0])),
+          d3.max(layers, layer => d3.max(layer, d => d[1]))
+        ])
+        .range([height - margin.bottom, margin.top]);
+
+      const area = d3.area()
+        .x(d => x(d.data.anio))
+        .y0(d => y(d[0]))
+        .y1(d => y(d[1]))
+        .curve(d3.curveCatmullRom.alpha(0.5));
+
+      svg.selectAll("*").remove();
+
+      const g = svg.append("g");
+
+      const yTicks = modo === "share" ? [-40, -20, 0, 20, 40] : y.ticks(6);
+
+      g.append("g")
+        .attr("class", "grid")
+        .attr("transform", `translate(0,0)`)
+        .call(
+          d3.axisLeft(y)
+            .tickValues(yTicks)
+            .tickSize(-(width - margin.left - margin.right))
+            .tickFormat("")
+        )
+        .select(".domain").remove();
+
+      const streams = g.selectAll(".stream")
+        .data(layers, d => d.key)
+        .join("path")
+        .attr("class", "stream")
+        .attr("fill", d => colores(d.key))
+        .attr("fill-opacity", 0.92)
+        .attr("d", area);
+
+      streams
+        .on("mouseenter", function(event, layer) {
+          streams.classed("dimmed", d => d.key !== layer.key);
+        })
+        .on("mousemove", function(event, layer) {
+          const [mx] = d3.pointer(event, svg.node());
+          const anioCercano = Math.round(x.invert(mx));
+          const fila = datos.find(d => d.anio === anioCercano && d.pais === layer.key);
+          const totalAnio = d3.sum(datos.filter(d => d.anio === anioCercano), d => d.valor);
+          const share = fila ? (fila.valor / totalAnio) * 100 : 0;
+
+          tooltip
+            .style("visibility", "visible")
+            .style("left", `${event.offsetX + 18}px`)
+            .style("top", `${event.offsetY + 18}px`)
+            .html(`
+              <div class="tt-title">${layer.key}</div>
+              <div class="tt-row"><b>Año:</b> ${anioCercano}</div>
+              <div class="tt-row"><b>Volumen:</b> ${fila ? d3.format(",.0f")(fila.valor) : "—"} mil barriles diarios</div>
+              <div class="tt-row"><b>Participación:</b> ${share.toFixed(1)}%</div>
+            `);
+        })
+        .on("mouseleave", function() {
+          streams.classed("dimmed", false);
+          tooltip.style("visibility", "hidden");
+        });
+
+      streams
+        .transition()
+        .duration(1100)
+        .ease(d3.easeCubicInOut)
+        .attr("d", area);
+
+      g.append("g")
+        .attr("class", "axis")
+        .attr("transform", `translate(0,${height - margin.bottom})`)
+        .call(
+          d3.axisBottom(x)
+            .tickFormat(d3.format("d"))
+            .tickValues(anios)
+        )
+        .call(g => g.select(".domain").attr("stroke", "rgba(255,255,255,0.18)"));
+
+      g.append("text")
+        .attr("x", width - margin.right)
+        .attr("y", 18)
+        .attr("text-anchor", "end")
+        .attr("fill", "#94a3b8")
+        .attr("font-size", 12)
+        .text(modo === "share" ? "Participación porcentual por año" : "Volumen importado (miles de barriles diarios)");
+    }
+
+    document.getElementById("btn-volumen").addEventListener("click", () => {
+      modo = "volumen";
+      document.getElementById("btn-volumen").classList.add("active");
+      document.getElementById("btn-share").classList.remove("active");
+      render();
+    });
+
+    document.getElementById("btn-share").addEventListener("click", () => {
+      modo = "share";
+      document.getElementById("btn-share").classList.add("active");
+      document.getElementById("btn-volumen").classList.remove("active");
+      render();
+    });
+
+    dibujarLeyenda();
+    render();
+    window.addEventListener("resize", render);
+  </script>
+</body>
+</html>

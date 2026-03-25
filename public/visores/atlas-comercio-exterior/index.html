@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Atlas del Comercio Exterior de México</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3"></script>
+
+  <link rel="stylesheet" href="/visores/atlas-comercio-exterior/css/estilos.css" />
+</head>
+<body>
+  <!-- Universal IMEG Navbar -->
+  <link rel="stylesheet" href="/visores/shared-navbar.css" />
+  <nav class="imeg-shared-navbar">
+      <a href="/mapas" class="imeg-back-link">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M19 12H5M12 19l-7-7 7-7"/>
+          </svg>
+          Regresar a visores
+      </a>
+      <div class="imeg-brand">IMEG</div>
+  </nav>
+  <main class="hero">
+    <div class="contenedor">
+      <div class="barra-superior">
+        <div class="logo">
+          <span class="logo-punto"></span>
+          <span>Atlas del Comercio Exterior de México</span>
+        </div>
+      </div>
+
+      <section class="hero-grid">
+        <article class="bloque-texto">
+          <div>
+            <div class="eyebrow">Propuesta visual interactiva</div>
+            <h1>México conectado al mundo</h1>
+            <p class="subtitulo">
+              Esta demo convierte el mapa en la firma visual de tu página: inicia con una lectura global tipo globo y se despliega hacia una vista analítica plana para explorar socios comerciales, sectores y riesgos logísticos.
+            </p>
+
+            <div class="acciones">
+              <button class="btn-principal" id="btnTransicion">Explorar comercio</button>
+              <button class="btn-secundario" id="btnReset">Volver al globo</button>
+            </div>
+
+            <div class="chips" id="chipsModo">
+              <button class="chip activo" data-modo="socios">Socios comerciales</button>
+              <button class="chip" data-modo="sectores">Sectores</button>
+              <button class="chip" data-modo="riesgo">Riesgo logístico</button>
+            </div>
+
+            <div class="kpis">
+              <div class="tarjeta-kpi">
+                <span>Exportaciones</span>
+                <strong>593.0 mil MDD</strong>
+              </div>
+              <div class="tarjeta-kpi">
+                <span>Importaciones</span>
+                <strong>625.3 mil MDD</strong>
+              </div>
+              <div class="tarjeta-kpi">
+                <span>Socio principal</span>
+                <strong>Estados Unidos</strong>
+              </div>
+              <div class="tarjeta-kpi">
+                <span>Sector líder</span>
+                <strong>Manufactura</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="pie-demo">
+            Demo conceptual para tu home: ideal como hero principal con transición narrativa de contexto global a análisis operativo.
+          </div>
+        </article>
+
+        <section class="bloque-mapa">
+          <div class="panel-superior">
+            <div class="estado-proyeccion">
+              <span>●</span>
+              <span id="estadoTexto">Vista globo</span>
+            </div>
+            <p id="descripcionModo">Flujos bilaterales de México con socios estratégicos.</p>
+          </div>
+
+          <div class="panel-derecho">
+            <h3 id="tituloPanel">Socios comerciales</h3>
+            <p id="textoPanel">Un globo centrado en México crea una entrada visual fuerte. Al desplegarse, la lectura pasa de geopolítica a análisis comparativo.</p>
+            <div class="detalle-lista" id="detallePanel"></div>
+            <div class="nota">Los datos son ilustrativos. La estructura está pensada para conectarse después a tu base real.</div>
+          </div>
+
+          <div class="mapa-wrap" id="mapaWrap">
+            <svg id="mapa"></svg>
+            <div class="tooltip" id="tooltip"></div>
+          </div>
+
+          <div class="panel-inferior">
+            <div class="leyenda">
+              <div class="leyenda-item"><span class="muestra" style="background:#3dd9c5"></span> Exportaciones / conexión principal</div>
+              <div class="leyenda-item"><span class="muestra" style="background:#68a8ff"></span> Importaciones / conexión secundaria</div>
+              <div class="leyenda-item"><span class="muestra" style="background:#ff9f43"></span> Riesgo / evento disruptivo</div>
+            </div>
+            <p>Haz clic en “Explorar comercio” para desplegar la vista.</p>
+          </div>
+        </section>
+      </section>
+    </div>
+  </main>
+
+  <script src="/visores/atlas-comercio-exterior/js/app.js"></script>
+</body>
+</html>
