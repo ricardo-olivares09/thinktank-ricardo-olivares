@@ -50,12 +50,18 @@ export default function SiteLayout({
       <div className="fixed inset-0 -z-50 bg-[radial-gradient(ellipse_at_top,rgba(0,34,77,0.02),transparent_60%)]" />
 
       {/* ── HEADER ── */}
-      <header className="fixed top-0 left-0 w-full z-[100] bg-white/85 backdrop-blur-xl border-b border-[#00224D]/5">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5">
+      <header className={`fixed top-0 left-0 w-full z-[120] transition-all duration-300 ${
+        menuAbierto 
+          ? "bg-transparent border-transparent" 
+          : "bg-white/85 backdrop-blur-xl border-b border-[#00224D]/5"
+      }`}>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5 z-[120]">
           {/* Logo */}
           <Link
             href="/"
-            className={`flex items-center gap-3 transition-opacity duration-300 ${menuAbierto ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+            className={`relative z-[120] flex items-center gap-3 transition-opacity duration-300 ${
+              menuAbierto ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}
           >
             <img src="/logo-imeg.png" alt="Logo IMEG" className="h-8 w-auto" />
             <div className="hidden sm:block">
@@ -97,26 +103,26 @@ export default function SiteLayout({
           {/* Mobile hamburger */}
           <button
             onClick={toggleMenu}
-            className="relative z-[120] flex lg:hidden flex-col items-end gap-1.5 p-4 -mr-4 cursor-pointer group"
+            className="relative z-[130] flex lg:hidden flex-col items-end gap-1.5 p-4 -mr-4 cursor-pointer group"
             aria-label="Abrir menú de navegación"
             style={{ WebkitTapHighlightColor: "transparent" }}
           >
             <div
               className={`h-[2px] transition-all duration-500 ease-in-out ${menuAbierto
                 ? "w-7 rotate-45 translate-y-[7px] bg-white"
-                : "w-7 bg-[#00224D]"
+                : "w-7 bg-[var(--foreground)]"
               }`}
             />
             <div
               className={`h-[2px] w-5 transition-all duration-300 ${menuAbierto
                 ? "opacity-0 translate-x-4"
-                : "bg-[#00224D] opacity-100"
+                : "bg-[var(--foreground)] opacity-100"
               }`}
             />
             <div
               className={`h-[2px] transition-all duration-500 ease-in-out ${menuAbierto
                 ? "w-7 -rotate-45 -translate-y-[7px] bg-white"
-                : "w-5 bg-[#00224D]"
+                : "w-5 bg-[var(--foreground)]"
               }`}
             />
           </button>
@@ -130,7 +136,7 @@ export default function SiteLayout({
           : "-translate-y-full opacity-0 pointer-events-none"
         }`}
       >
-        <div className="absolute inset-0 bg-[#00224D]" />
+        <div className="absolute inset-0 mobile-menu-bg" />
 
         <div className="relative mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5 z-[120]">
           <div className="flex items-center gap-3">

@@ -4,6 +4,7 @@
   --background: #FDFDFD;
   --foreground: #00224D;
   --accent: #FF204E;
+  --mobile-menu-bg: rgba(0,34,77,0.9);
 }
 
 html {
